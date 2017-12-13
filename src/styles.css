@@ -1,0 +1,6 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+    font-family: 'Alef', sans-serif;
+    font-family: 'Assistant', sans-serif;
+}
+body { padding-top: 70px; }
