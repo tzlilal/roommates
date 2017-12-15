@@ -1,12 +1,25 @@
 <div class="row">
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">Roommates</a>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">אודות</a></li>
-          <li><a href="#">הרשמה</a></li>
-          <li><a href="#">התחברות</a></li>
-        </ul>
-    </div>
-  </nav>
-</div>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <!-- creating the hamburger menu (will appear when shrinking the size of the window) -->
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-nav-demo" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <!-- each span responsible for the bars -->
+            </button>
+            <a class="navbar-brand" href="#">YourRoomie</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-nav-demo">
+          <!-- the collapse makes the li's disappear when minimizing the page -->
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">אודות</a></li>
+            <li><a href="#">הרשמה</a></li>
+            <li><a href="#">התחברות</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
