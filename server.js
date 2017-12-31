@@ -3,11 +3,17 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 // Get our API routes
 const api = require('./server/routes/api');
 
 const app = express();
+// connect app to mongoose 
+mongoose.connect('mongodb://localhost:27017/appdb', {
+    useMongoClient: true,
+    /* other options */
+  }); 
 
 // Parsers for POST data
 app.use(bodyParser.json());
