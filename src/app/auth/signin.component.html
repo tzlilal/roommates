@@ -1,21 +1,5 @@
 <div class="col-md-8 col-md-offset-2">
-    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="firstName">שם פרטי</label>
-            <input
-                    type="text"
-                    id="firstName"
-                    class="form-control"
-                    formControlName="firstName">
-        </div>
-        <div class="form-group">
-            <label for="lastName">שם משפחה</label>
-            <input
-                    type="text"
-                    id="lastName"
-                    class="form-control"
-                    formControlName="lastName">
-        </div>
+    <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="email">אימייל</label>
             <input
@@ -35,7 +19,7 @@
         <button
                 class="btn btn-primary"
                 type="submit"
-                [disabled]="!signupForm.valid">שלח</button>
+                [disabled]="!signinForm.valid">שלח</button>
                 <!-- disabling the button if one of the fields (or all of them) is not valid -->
     </form>
 </div>

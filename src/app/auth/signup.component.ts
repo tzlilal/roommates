@@ -11,6 +11,7 @@ export class SignupComponent implements OnInit {
     signupForm: FormGroup;
 
     onSubmit(){
+        // after submitting all data the form will reset
         this.signupForm.reset();
     }
 
