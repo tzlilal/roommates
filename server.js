@@ -10,10 +10,7 @@ const api = require('./server/routes/api');
 
 const app = express();
 // connect app to mongoose 
-mongoose.connect('mongodb://localhost:27017/appdb', {
-    useMongoClient: true,
-    /* other options */
-  }); 
+mongoose.connect('mongodb://localhost:27017/appdb'); 
 
 // Parsers for POST data
 app.use(bodyParser.json());

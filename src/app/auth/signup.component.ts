@@ -2,6 +2,9 @@ import { Component } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
+import { AuthService } from './auth.service';
+import { User } from './user.model';
+
 @Component({
     selector: 'app-signup',
     templateUrl: './signup.component.html'
@@ -10,7 +13,20 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 export class SignupComponent implements OnInit {
     signupForm: FormGroup;
 
+    constructor(private authService: AuthService) {}
+
     onSubmit(){
+        const user = new User(
+            this.signupForm.value.email,
+            this.signupForm.value.password,
+            this.signupForm.value.firstName,
+            this.signupForm.value.lastName
+        );
+        this.authService.signup(user)
+            .subscribe(
+                data => console.log(data),
+                error => console.error(error)
+        );
         // after submitting all data the form will reset
         this.signupForm.reset();
     }
