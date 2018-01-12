@@ -17,7 +17,8 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">אודות</a></li>
             <li><a [routerLink]="['signup']">הרשמה</a></li>
-            <li><a [routerLink]="['signin']">התחברות</a></li>
+            <li *ngIf="!isLoggedIn()"><a [routerLink]="['signin']">התחברות</a></li>
+            <li *ngIf="isLoggedIn()"><a [routerLink]="['logout']">יציאה</a></li>
           </ul>
         </div>
       </div>
