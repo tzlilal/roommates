@@ -1,0 +1,99 @@
+<div class="col-md-8 col-md-offset-2">
+  <form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+      <div class="form-group row">
+          <label for="firstName">שם פרטי</label>
+          <div class="col-sm-10">
+            <input
+                    type="text"
+                    id="firstName"
+                    class="form-control"
+                    formControlName="firstName">
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for="lastName">שם משפחה</label>
+          <div class="col-sm-10">
+            <input
+                    type="text"
+                    id="lastName"
+                    class="form-control"
+                    formControlName="lastName">
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for="email">אימייל</label>
+          <div class="col-sm-10">
+            <input
+                    type="email"
+                    id="email"
+                    class="form-control"
+                    formControlName="email">
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for="password">סיסמה</label>
+          <div class="col-sm-10">
+            <input
+                    type="password"
+                    id="password"
+                    class="form-control"
+                    formControlName="password">
+          </div>
+      </div>
+      <div class="form-group row">
+        <label for="phoneNumber">מספר פלאפון</label>
+        <div class="col-sm-10">
+          <input
+                  type="number"
+                  id="phoneNumber"
+                  class="form-control"
+                  formControlName="phoneNumber">
+        </div>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          הצג מספר פלאפון בפרופיל
+        </label>
+      </div>
+
+      <!-- Personal Info -->
+
+      <div class="form-group row">
+        <label for="gender">מין</label>
+        <div class="col-sm-10">
+          <select id="gender" class="form-control">
+            <option selected>זכר</option>
+            <option>נקבה</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="age">גיל</label>
+        <div class="col-sm-10">
+          <input
+                  type="number"
+                  id="age"
+                  class="form-control"
+                  formControlName="age">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="gender">מצב משפחתי</label>
+        <div class="col-sm-10">
+          <select id="gender" class="form-control">
+            <option selected>לא רלוונטי</option>
+            <option>רווק</option>
+            <option>בזוגיות</option>
+            <option>מאורס</option>
+            <option>נשוי</option>
+          </select>
+        </div>
+      </div>
+      <button
+              class="btn btn-primary"
+              type="submit"
+              [disabled]="!settingsForm.valid">שמור</button>
+              <!-- disabling the button if one of the fields (or all of them) is not valid -->
+  </form>
+</div>

@@ -3,4 +3,7 @@
     font-family: 'Alef', sans-serif;
     font-family: 'Assistant', sans-serif;
 }
-body { padding-top: 70px; }
+body { 
+    padding-top: 70px; 
+    direction: rtl;
+}
