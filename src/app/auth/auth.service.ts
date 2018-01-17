@@ -34,4 +34,21 @@ export class AuthService{
     isLoggedIn(){
         return localStorage.getItem('token') !== null;
     }
+
+    getProfile(){
+        const token = localStorage.getItem('token')
+        ? '?token=' + localStorage.getItem('token')
+        : '';
+        return this.http.get('http://localhost:3000/api/profile' + token)
+        .map((response: Response) => { 
+            const result = response.json(); 
+            const user = new User(
+                result.result.email,
+                result.result.password,
+                result.result.firstName,
+                result.result.lastName);
+            return user;
+        })
+        .catch((error: Response) => Observable.throw(error.json()));
+    }
 }

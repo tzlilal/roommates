@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+const passport = require('passport');
 var jwt = require('jsonwebtoken');
 
+const config = require('../config/database');
 const User = require('../../models/user');
 
 router.post('/', (req, res, next) => {
@@ -46,7 +48,7 @@ router.post('/signin', function(req, res, next){
               error: {message: 'Invalid login credentials'}
           });
       }
-      let token = jwt.sign({user: user}, 'secret', {expiresIn: 7200}); // creates a new token and signs it
+      let token = jwt.sign({user: user}, config.secret, {expiresIn: 7200}); // creates a new token and signs it
           //  expiresIn -> how long the token will be vaild, 2 hr
       res.status(200).json({ // sends the token to the user 
           message: 'Successfully logged in',
@@ -54,6 +56,21 @@ router.post('/signin', function(req, res, next){
           userId: user._id
       });
   });
+});
+
+router.get('/profile', function (req, res, next) {
+    let decoded = jwt.decode(req.query.token);
+    User.findById(decoded.user._id, function (err, user) {
+        if (err) {
+            return res.status(500).json({
+                title: 'An error occurred',
+                error: err
+            });
+        }
+        res.status(200).json({ 
+            result: user
+        });
+    })   
 });
 
 module.exports = router;

@@ -31,6 +31,8 @@
     "mongoose": "^5.0.0-rc0",
     "mongoose-unique-validator": "^1.0.6",
     "ngx-bootstrap": "^2.0.0-beta.11",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.1",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
   },
