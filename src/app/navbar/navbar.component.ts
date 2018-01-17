@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from '../auth/auth.service';
-import { UserService } from '../user.service';
 import { User } from '../auth/user.model';
 
 @Component({
@@ -11,23 +10,18 @@ import { User } from '../auth/user.model';
 })
 export class NavbarComponent implements OnInit {
   user: User;
-  userName;
-
-  constructor(private authService: AuthService, private userService: UserService) {}
+  constructor(private authService: AuthService) {}
 
   isLoggedIn() {
     return this.authService.isLoggedIn();
   }
 
-  ngOnInit() { 
-  }
-
-  getUserName(){
-    if(this.userService.getUserCreated()){
-      this.user = this.userService.getUser();
-      this.userName = this.user.firstName;
-      return this.userName;
-    } 
+  ngOnInit() {
+    this.authService.getProfile().subscribe(
+      (user: User) => {
+        this.user = user;
+      }
+    ); 
   }
 
 }

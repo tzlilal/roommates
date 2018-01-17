@@ -14,7 +14,7 @@ const APP_ROUTES: Routes = [
     { path: 'signin', component: SigninComponent },
     { path: 'logout', component: LogoutComponent }, 
     { path: 'settings', component: SettingsComponent},
-    { path: 'profile', component: ProfileComponent},
+    { path: 'settings/profile', component: ProfileComponent},
     // redirect to home if the page doesnt exist
     { path: '**', component: HomeComponent }  
 ];

@@ -21,7 +21,7 @@
             <li *ngIf="isLoggedIn()"><a href='#'>מועדפים</a></li>
             <li *ngIf="isLoggedIn()"><a href='#'>הודעות</a></li>
             <li *ngIf="isLoggedIn()"><a [routerLink]="['logout']">יציאה</a></li>
-            <li *ngIf="isLoggedIn()">{{ getUserName() }}</li>
+            <li *ngIf="isLoggedIn()"><a [routerLink]="['settings']">{{user.firstName}}</a></li>
           </ul>
         </div>
       </div>
