@@ -5,6 +5,7 @@ import { SignupComponent } from './auth/signup.component';
 import { SigninComponent } from './auth/signin.component';
 import { LogoutComponent } from './auth/logout.component';
 import { SettingsComponent } from './settings/settings.component';
+import { ProfileComponent } from './settings/profile/profile.component';
 
 const APP_ROUTES: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -13,6 +14,7 @@ const APP_ROUTES: Routes = [
     { path: 'signin', component: SigninComponent },
     { path: 'logout', component: LogoutComponent }, 
     { path: 'settings', component: SettingsComponent},
+    { path: 'profile', component: ProfileComponent},
     // redirect to home if the page doesnt exist
     { path: '**', component: HomeComponent }  
 ];

@@ -16,9 +16,12 @@
           <!-- the collapse makes the li's disappear when minimizing the page -->
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">אודות</a></li>
-            <li><a [routerLink]="['signup']">הרשמה</a></li>
+            <li><a *ngIf="!isLoggedIn()"[routerLink]="['signup']">הרשמה</a></li>
             <li *ngIf="!isLoggedIn()"><a [routerLink]="['signin']">התחברות</a></li>
+            <li *ngIf="isLoggedIn()"><a href='#'>מועדפים</a></li>
+            <li *ngIf="isLoggedIn()"><a href='#'>הודעות</a></li>
             <li *ngIf="isLoggedIn()"><a [routerLink]="['logout']">יציאה</a></li>
+            <li *ngIf="isLoggedIn()">{{ getUserName() }}</li>
           </ul>
         </div>
       </div>

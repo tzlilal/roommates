@@ -5,12 +5,11 @@ var jwt = require('jsonwebtoken');
 
 const User = require('../../models/user');
 
-/* GET api listing. */
 router.post('/', (req, res, next) => {
   let user = new User({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    password: bcrypt.hashSync(req.body.password, 10),
+    password: bcrypt.hashSync(req.body.password, 10), // returning hashed password
     email: req.body.email
   });
   user.save(function(err, result){

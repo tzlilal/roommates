@@ -30,7 +30,7 @@ export class AuthService{
         localStorage.clear();
     }
     
-        // checking if the user is logged in by checking if the token exist 
+    // checking if the user is logged in by checking if the token exist 
     isLoggedIn(){
         return localStorage.getItem('token') !== null;
     }

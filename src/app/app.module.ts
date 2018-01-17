@@ -13,6 +13,9 @@ import { SigninComponent } from './auth/signin.component';
 import { routing } from './app.routing'
 import { AuthService } from './auth/auth.service';
 import { SettingsComponent } from './settings/settings.component';
+import { SidebarComponent } from './settings/sidebar/sidebar.component';
+import { UserService } from './user.service';
+import { ProfileComponent } from './settings/profile/profile.component';
  
 
 @NgModule({
@@ -23,7 +26,9 @@ import { SettingsComponent } from './settings/settings.component';
     LogoutComponent,
     SignupComponent,
     SigninComponent,
-    SettingsComponent
+    SettingsComponent,
+    SidebarComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +37,7 @@ import { SettingsComponent } from './settings/settings.component';
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
