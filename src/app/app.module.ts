@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { FormsModule }   from '@angular/forms'; // to delete and from imports
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -15,6 +16,9 @@ import { AuthService } from './auth/auth.service';
 import { SettingsComponent } from './settings/settings.component';
 import { SidebarComponent } from './settings/sidebar/sidebar.component';
 import { ProfileComponent } from './settings/profile/profile.component';
+import { AccountComponent } from './settings/account/account.component';
+import { UserDetailComponent } from './settings/user-detail/user-detail.component';
+import { ApartmentComponent } from './settings/apartment/apartment.component';
  
 
 @NgModule({
@@ -27,14 +31,18 @@ import { ProfileComponent } from './settings/profile/profile.component';
     SigninComponent,
     SettingsComponent,
     SidebarComponent,
-    ProfileComponent
+    ProfileComponent,
+    AccountComponent,
+    UserDetailComponent,
+    ApartmentComponent
   ],
   imports: [
     BrowserModule,
     BsDropdownModule.forRoot(),
     routing,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule, 
+    FormsModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
