@@ -14,7 +14,6 @@ import { routing } from './app.routing'
 import { AuthService } from './auth/auth.service';
 import { SettingsComponent } from './settings/settings.component';
 import { SidebarComponent } from './settings/sidebar/sidebar.component';
-import { UserService } from './user.service';
 import { ProfileComponent } from './settings/profile/profile.component';
  
 
@@ -37,7 +36,7 @@ import { ProfileComponent } from './settings/profile/profile.component';
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [AuthService, UserService],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

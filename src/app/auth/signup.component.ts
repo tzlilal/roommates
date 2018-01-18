@@ -1,10 +1,10 @@
 import { Component } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { Router } from '@angular/router';
 
 import { AuthService } from './auth.service';
 import { User } from './user.model';
-import { UserService } from '../user.service';
 
 @Component({
     selector: 'app-signup',
@@ -14,7 +14,7 @@ import { UserService } from '../user.service';
 export class SignupComponent implements OnInit {
     signupForm: FormGroup;
 
-    constructor(private authService: AuthService, private userService: UserService) {}
+    constructor(private authService: AuthService, private router: Router) {}
 
     onSubmit(){
         const user = new User(
@@ -23,8 +23,6 @@ export class SignupComponent implements OnInit {
             this.signupForm.value.firstName,
             this.signupForm.value.lastName
         );
-        this.userService.setUser(user);
-        this.userService.setUserCreated(true); 
         this.authService.signup(user)
             .subscribe(
                 data => console.log(data),
@@ -32,6 +30,7 @@ export class SignupComponent implements OnInit {
         );
         // after submitting all data the form will reset
         this.signupForm.reset();
+        this.router.navigate(['/signin']);
     }
 
     ngOnInit(){
