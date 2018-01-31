@@ -1,14 +1,10 @@
-<table class="table table-hover">
-  <tbody>
-      <tr *ngFor="let user of users" [routerLink]="['#']">
-          <td>{{ user.firstName }}</td>
-          <td>{{ user.lastName }}</td>
-      </tr>
-  </tbody>
-</table> 
-
-<!-- <div class="row">
-  <div *ngFor="let user of users" [routerLink]="['#']" class="col">
-    {{ user.firstName }}
+<div *ngFor="let user of users" [routerLink]="['#']" class="col-sm-4">
+  <div class="gal-detail thumb">
+      <a href="#" class="image-popup" title="Screenshot-2">
+          <img src="https://image.flaticon.com/icons/svg/126/126486.svg" height="100" width="100" class="thumb-img" alt="work-thumbnail">
+      </a>
+      <h4 class="text-center">{{ user.firstName }}</h4>
+      <div class="ga-border"></div>
+      <p class="text-muted text-center"><small>{{ user.lastName }}</small></p>
   </div>
-</div> -->
+</div>
