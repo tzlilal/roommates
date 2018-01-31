@@ -20,6 +20,7 @@ import { AccountComponent } from './settings/account/account.component';
 import { UserDetailComponent } from './settings/user-detail/user-detail.component';
 import { ApartmentComponent } from './settings/apartment/apartment.component';
 import { RoommateDetailComponent } from './settings/roommate-detail/roommate-detail.component';
+import { SearchComponent } from './search/search.component';
  
 
 @NgModule({
@@ -36,7 +37,8 @@ import { RoommateDetailComponent } from './settings/roommate-detail/roommate-det
     AccountComponent,
     UserDetailComponent,
     ApartmentComponent,
-    RoommateDetailComponent
+    RoommateDetailComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

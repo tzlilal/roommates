@@ -8,6 +8,7 @@ import { User } from './user.model';
 
 @Injectable()
 export class AuthService{
+    private users: User[] = [];
     constructor(private http: Http) {}
 
     signup(user: User){
@@ -48,6 +49,25 @@ export class AuthService{
                 result.result.firstName,
                 result.result.lastName);
             return user;
+        })
+        .catch((error: Response) => Observable.throw(error.json()));
+    }
+
+    getUsers(){
+        return this.http.get('http://localhost:3000/api/search')
+        .map((response: Response) => {
+            const users = response.json().obj;
+            let transformedUsers: User[] = [];
+            for (let user of users) {
+                transformedUsers.push(new User(
+                    user.email,
+                    user.password,
+                    user.firstName,
+                    user.lastName)
+                );
+            }
+            this.users = transformedUsers;
+            return transformedUsers;
         })
         .catch((error: Response) => Observable.throw(error.json()));
     }

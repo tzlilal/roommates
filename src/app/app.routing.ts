@@ -10,6 +10,7 @@ import { AccountComponent } from './settings/account/account.component';
 import { UserDetailComponent } from './settings/user-detail/user-detail.component';
 import { ApartmentComponent } from './settings/apartment/apartment.component';
 import { RoommateDetailComponent } from './settings/roommate-detail/roommate-detail.component';
+import { SearchComponent } from './search/search.component';
 
 const APP_ROUTES: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -17,6 +18,7 @@ const APP_ROUTES: Routes = [
     { path: 'signup', component: SignupComponent }, 
     { path: 'signin', component: SigninComponent },
     { path: 'logout', component: LogoutComponent }, 
+    { path: 'search', component: SearchComponent },
     { path: 'settings', component: SettingsComponent, children: [
         { path: 'account', component: AccountComponent},
         { path: 'info', component: UserDetailComponent},
