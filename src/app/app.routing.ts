@@ -9,6 +9,7 @@ import { ProfileComponent } from './settings/profile/profile.component';
 import { AccountComponent } from './settings/account/account.component';
 import { UserDetailComponent } from './settings/user-detail/user-detail.component';
 import { ApartmentComponent } from './settings/apartment/apartment.component';
+import { RoommateDetailComponent } from './settings/roommate-detail/roommate-detail.component';
 
 const APP_ROUTES: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const APP_ROUTES: Routes = [
     { path: 'settings', component: SettingsComponent, children: [
         { path: 'account', component: AccountComponent},
         { path: 'info', component: UserDetailComponent},
+        { path: 'roommateinfo', component: RoommateDetailComponent},
         { path: 'profile', component: ProfileComponent},
         { path: 'apartment', component: ApartmentComponent}
     ]},

@@ -73,4 +73,19 @@ router.get('/profile', function (req, res, next) {
     })   
 });
 
+router.get('/search', function (req, res, next) {
+    let decoded = jwt.decode(req.query.token);
+    User.findById(decoded.user._id, function (err, user) {
+        if (err) {
+            return res.status(500).json({
+                title: 'An error occurred',
+                error: err
+            });
+        }
+        res.status(200).json({ 
+            result: user
+        });
+    })   
+});
+
 module.exports = router;

@@ -19,6 +19,7 @@ import { ProfileComponent } from './settings/profile/profile.component';
 import { AccountComponent } from './settings/account/account.component';
 import { UserDetailComponent } from './settings/user-detail/user-detail.component';
 import { ApartmentComponent } from './settings/apartment/apartment.component';
+import { RoommateDetailComponent } from './settings/roommate-detail/roommate-detail.component';
  
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ApartmentComponent } from './settings/apartment/apartment.component';
     ProfileComponent,
     AccountComponent,
     UserDetailComponent,
-    ApartmentComponent
+    ApartmentComponent,
+    RoommateDetailComponent
   ],
   imports: [
     BrowserModule,
