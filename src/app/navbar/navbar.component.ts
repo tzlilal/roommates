@@ -10,18 +10,31 @@ import { User } from '../auth/user.model';
 })
 export class NavbarComponent implements OnInit {
   user: User;
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+    if(this.isLoggedIn()) {
+
+      this.authService.getProfile().subscribe(
+        (user: User) => {
+          this.user = user;
+          console.log(this.user); 
+        }
+      ); 
+    }
+  }
 
   isLoggedIn() {
     return this.authService.isLoggedIn();
   }
 
   ngOnInit() {
-    this.authService.getProfile().subscribe(
-      (user: User) => {
-        this.user = user;
-      }
-    ); 
+    // if(this.isLoggedIn()) {
+
+    //   this.authService.getProfile().subscribe(
+    //     (user: User) => {
+    //       this.user = user;
+    //     }
+    //   ); 
+    // }
   }
 
 }
