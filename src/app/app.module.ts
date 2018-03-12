@@ -21,6 +21,7 @@ import { UserDetailComponent } from './settings/user-detail/user-detail.componen
 import { ApartmentComponent } from './settings/apartment/apartment.component';
 import { RoommateDetailComponent } from './settings/roommate-detail/roommate-detail.component';
 import { SearchComponent } from './search/search.component';
+import { AuthGuard } from './auth/auth-guard.service';
  
 
 @NgModule({
@@ -48,7 +49,7 @@ import { SearchComponent } from './search/search.component';
     HttpModule, 
     FormsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
