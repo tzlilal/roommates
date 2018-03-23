@@ -22,6 +22,7 @@ import { ApartmentComponent } from './settings/apartment/apartment.component';
 import { RoommateDetailComponent } from './settings/roommate-detail/roommate-detail.component';
 import { SearchComponent } from './search/search.component';
 import { AuthGuard } from './auth/auth-guard.service';
+import { ApartmentDetailComponent } from './settings/apartment-detail/apartment-detail.component';
  
 
 @NgModule({
@@ -39,7 +40,8 @@ import { AuthGuard } from './auth/auth-guard.service';
     UserDetailComponent,
     ApartmentComponent,
     RoommateDetailComponent,
-    SearchComponent
+    SearchComponent,
+    ApartmentDetailComponent
   ],
   imports: [
     BrowserModule,

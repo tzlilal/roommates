@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
       this.authService.getProfile().subscribe(
         (user: User) => {
           this.user = user;
-          console.log(this.user); 
+          console.log(this.user);
         }
       ); 
     }

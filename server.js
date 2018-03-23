@@ -12,16 +12,16 @@ const api = require('./server/routes/api');
 
 const app = express();
 // connect app to mongoose 
-// mongoose.connect('mongodb://localhost:27017/appdb'); 
-mongoose.connect(config.database, { useMongoClient: true});
-// On Connection
-mongoose.connection.on('connected', () => {
-  console.log('Connected to Database '+config.database);
-});
-// On Error
-mongoose.connection.on('error', (err) => {
-  console.log('Database error '+err);
-});
+mongoose.connect('mongodb://localhost:27017/appdb'); 
+// mongoose.connect(config.database, { useMongoClient: true});
+// // On Connection
+// mongoose.connection.on('connected', () => {
+//   console.log('Connected to Database '+config.database);
+// });
+// // On Error
+// mongoose.connection.on('error', (err) => {
+//   console.log('Database error '+err);
+// });
 
 // Parsers for POST data
 app.use(bodyParser.json());

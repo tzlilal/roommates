@@ -41,7 +41,7 @@ export class AuthService{
         ? '?token=' + localStorage.getItem('token')
         : '';
         return this.http.get('http://localhost:3000/api/profile' + token)
-        .map((response: Response) => { 
+        .map((response: Response) => {  
             const result = response.json(); 
             const user = new User(
                 result.result.email,

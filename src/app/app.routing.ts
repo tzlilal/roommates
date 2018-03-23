@@ -12,6 +12,7 @@ import { ApartmentComponent } from './settings/apartment/apartment.component';
 import { RoommateDetailComponent } from './settings/roommate-detail/roommate-detail.component';
 import { SearchComponent } from './search/search.component';
 import { AuthGuard } from './auth/auth-guard.service';
+import { ApartmentDetailComponent } from './settings/apartment-detail/apartment-detail.component';
 
 const APP_ROUTES: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -24,6 +25,7 @@ const APP_ROUTES: Routes = [
         { path: 'account', component: AccountComponent},
         { path: 'info', component: UserDetailComponent},
         { path: 'roommateinfo', component: RoommateDetailComponent},
+        { path: 'apartmentinfo', component: ApartmentDetailComponent},
         { path: 'profile', component: ProfileComponent},
         { path: 'apartment', component: ApartmentComponent}
     ]},
