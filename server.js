@@ -12,7 +12,10 @@ const api = require('./server/routes/api');
 
 const app = express();
 // connect app to mongoose 
-mongoose.connect('mongodb://localhost:27017/appdb'); 
+// mongoose.connect('mongodb://localhost:27017/appdb'); 
+
+mongoose.connect('mongodb://test-user:test_pw@ds121289.mlab.com:21289/roommates');
+
 // mongoose.connect(config.database, { useMongoClient: true});
 // // On Connection
 // mongoose.connection.on('connected', () => {

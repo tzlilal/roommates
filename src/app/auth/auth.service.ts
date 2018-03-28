@@ -14,7 +14,7 @@ export class AuthService{
     signup(user: User){
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'}); 
-        return this.http.post('http://localhost:3000/api', body, {headers: headers})
+        return this.http.post('https://roommates-project-app.herokuapp.com/api', body, {headers: headers})
             .map((response: Response) => response.json)
             .catch((error: Response) => Observable.throw(error.json()));
     }
@@ -22,7 +22,7 @@ export class AuthService{
     signin(user: User){
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post('http://localhost:3000/api/signin', body, {headers: headers})
+        return this.http.post('https://roommates-project-app.herokuapp.com/api/signin', body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
@@ -40,7 +40,7 @@ export class AuthService{
         const token = localStorage.getItem('token')
         ? '?token=' + localStorage.getItem('token')
         : '';
-        return this.http.get('http://localhost:3000/api/profile' + token)
+        return this.http.get('https://roommates-project-app.herokuapp.com/api/profile' + token)
         .map((response: Response) => {  
             const result = response.json(); 
             const user = new User(
@@ -54,7 +54,7 @@ export class AuthService{
     }
 
     getUsers(){
-        return this.http.get('http://localhost:3000/api/search')
+        return this.http.get('https://roommates-project-app.herokuapp.com/api/search')
         .map((response: Response) => {
             const users = response.json().obj;
             let transformedUsers: User[] = [];

@@ -7,8 +7,8 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./roommate-detail.component.css']
 })
 export class RoommateDetailComponent implements OnInit {
-  chosenOption: string; 
-  animals = ['חתול', 'כלב']; 
+  chosenOption: string = "sdfdsf"; 
+  animals = ['חתול', 'כלב'];  
   constructor() { }
 
   ngOnInit() {
