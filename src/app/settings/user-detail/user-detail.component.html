@@ -11,22 +11,20 @@
     <div class="form-group row">
       <label for="age">גיל</label>
       <div class="col-sm-10">
-        <input
-                type="number"
-                id="age"
-                class="form-control"
-                formControlName="age">
+          <select id="age" class="form-control">
+            <option *ngFor="let age of user_age">{{ age }}</option>
+          </select>
       </div>
     </div>
     <div class="form-group row">
       <label for="gender">מצב משפחתי</label>
       <div class="col-sm-10">
         <select id="gender" class="form-control">
-          <option selected>לא רלוונטי</option>
-          <option>רווק</option>
+          <option selected>רווק</option>
           <option>בזוגיות</option>
           <option>מאורס</option>
           <option>נשוי</option>
+          <option>לא רלוונטי</option>
         </select>
       </div>
     </div>
@@ -36,6 +34,7 @@
         <select id="children" class="form-control">
           <option selected>יש ילדים</option>
           <option>אין ילדים</option>
+          <option>לא רלוונטי</option>
         </select>
       </div>
     </div>
@@ -43,9 +42,12 @@
       <label for="occupation">עיסוק</label>
       <div class="col-sm-10">
         <select id="occupation" class="form-control">
-          <option selected>סטודנט</option>
+          <option selected>עובד במשרה מלאה</option>
+          <option>עובד במשרה חלקית</option>
+          <option>סטודנט</option>
           <option>חייל</option>
           <option>מובטל</option>
+          <option>לא רלוונטי</option>
         </select>
       </div>
     </div>
@@ -62,11 +64,11 @@
       <label for="religion">דת</label>
       <div class="col-sm-10">
         <select id="religion" class="form-control">
-          <option selected>דתי</option>
+          <option selected>חילוני</option>
           <option>מסורתי ששומר שבת</option>
-          <option>מסורתי שלא שומר שבת</option>
+          <option>דתי</option>
           <option>אתאיסט</option>
-          <option>חילוני</option>
+          <option>לא רלוונטי</option>
         </select>
       </div>
     </div>
@@ -76,6 +78,7 @@
         <select id="kosher" class="form-control">
           <option selected>שומר כשרות</option>
           <option>לא שומר כשרות</option>
+          <option>לא רלוונטי</option>
         </select>
       </div>
     </div>
@@ -83,7 +86,9 @@
       <label for="kitchen">מטבח</label>
       <div class="col-sm-10">
         <select id="kitchen" class="form-control">
-          <option selected>כשר חלבי</option>
+          <option selected>כשר</option>
+          <option>לא כשר</option>
+          <option>לא רלוונטי</option>
         </select>
       </div>
     </div>
@@ -91,8 +96,10 @@
       <label for="diet">תזונה</label>
       <div class="col-sm-10">
         <select id="diet" class="form-control">
-          <option selected>צמחוני</option>
-          <option>טבעוני</option>
+          <option selected>רגילה</option>
+          <option selected>צמחונית</option>
+          <option>טבעונית</option>
+          <option>לא רלוונטי</option>
         </select>
       </div>
     </div>
@@ -100,20 +107,21 @@
       <label for="smoking">עישון</label>
       <div class="col-sm-10">
         <select id="smoking" class="form-control">
-          <option selected>לא מעשן</option>
-          <option>מעשן רק בחוץ</option>
-          <option>מעשן בפנים ובחוץ</option>
+          <option selected>מעשן</option>
+          <option>לא מעשן</option>
+          <option>לא רלוונטי</option>
         </select>
       </div>
     </div>
     <div class="form-group row">
       <label for="animals">מחזיק בע"ח</label>
       <div class="col-sm-10">
-        <select id="animals" class="form-control">
-          <option selected>כלב</option>
-          <option>חתול</option>
-          <option>נחש</option>
-        </select>
+        <input type="checkbox" id="animals" value="dog">
+        <label for="dog">כלב</label>
+        <input type="checkbox" id="animals" value="cat">
+        <label for="cat">חתול</label>
+        <input type="checkbox" id="animals" value="other">
+        <label for="other">אחר</label>
       </div>
     </div>
     <div class="form-group row">
@@ -123,6 +131,7 @@
           <option selected>נקי</option>
           <option>ממוצע</option>
           <option>לא נקי</option>
+          <option>לא רלוונטי</option>
         </select>
       </div>
     </div>

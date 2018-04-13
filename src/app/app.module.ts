@@ -23,6 +23,7 @@ import { RoommateDetailComponent } from './settings/roommate-detail/roommate-det
 import { SearchComponent } from './search/search.component';
 import { AuthGuard } from './auth/auth-guard.service';
 import { ApartmentDetailComponent } from './settings/apartment-detail/apartment-detail.component';
+import { FormsService } from './settings/forms.service';
  
 
 @NgModule({
@@ -51,7 +52,7 @@ import { ApartmentDetailComponent } from './settings/apartment-detail/apartment-
     HttpModule, 
     FormsModule
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, FormsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { FormsService } from '../forms.service';
 
 @Component({
   selector: 'app-roommate-detail',
@@ -7,15 +8,13 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./roommate-detail.component.css']
 })
 export class RoommateDetailComponent implements OnInit {
-  chosenOption: string = "sdfdsf"; 
-  animals = ['חתול', 'כלב'];  
-  constructor() { }
+  rommate_age = []; 
+  constructor(private formsService: FormsService) { 
+    this.rommate_age = formsService.getAges(); 
+  }
 
   ngOnInit() {
   }
 
-  print() {
-    console.log("My input: ", this.chosenOption);
-  }
 
 }
