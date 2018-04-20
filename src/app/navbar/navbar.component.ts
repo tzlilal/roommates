@@ -10,15 +10,17 @@ import { User } from '../auth/user.model';
 })
 export class NavbarComponent implements OnInit {
   user: User;
+  isDataAvailable: boolean; 
+
   constructor(private authService: AuthService) {
     if(this.isLoggedIn()) {
-
+      this.isDataAvailable = false; 
       this.authService.getProfile().subscribe(
-        (user: User) => {
-          this.user = user;
-          console.log(this.user);
-        }
-      ); 
+        user => 
+          this.user = user, 
+        error => console.log(error), 
+        () => this.isDataAvailable = true
+      );  
     }
   }
 

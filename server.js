@@ -36,7 +36,7 @@ app.use(passport.session());
 
 require('./server/config/passport')(passport);
 
-// Point static path to dist
+// Point static path to dist (the folder that will be accessible from outside)
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // Set our api routes
