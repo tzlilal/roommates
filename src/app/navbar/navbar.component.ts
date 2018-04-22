@@ -10,33 +10,20 @@ import { User } from '../auth/user.model';
 })
 export class NavbarComponent implements OnInit {
   user: User;
-  isDataAvailable: boolean; 
-
-  constructor(private authService: AuthService) {
-    if(this.isLoggedIn()) {
-      this.isDataAvailable = false; 
-      this.authService.getProfile().subscribe(
-        user => 
-          this.user = user, 
-        error => console.log(error), 
-        () => this.isDataAvailable = true
-      );  
-    }
+  constructor(public authService: AuthService) {
   }
 
-  isLoggedIn() {
-    return this.authService.isLoggedIn();
+  get isLoggedIn() {
+    return this.authService.isLoggedIn;
   }
 
   ngOnInit() {
-    // if(this.isLoggedIn()) {
-
-    //   this.authService.getProfile().subscribe(
-    //     (user: User) => {
-    //       this.user = user;
-    //     }
-    //   ); 
-    // }
+    if(this.isLoggedIn ){
+      this.authService.getProfile().subscribe(
+        (user: User) => {
+          this.user = user;
+        });
+    }
   }
 
 }

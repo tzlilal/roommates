@@ -16,16 +16,16 @@
           <!-- the collapse makes the li's disappear when minimizing the page -->
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">אודות</a></li>
-            <li><a *ngIf="!isLoggedIn()"[routerLink]="['signup']">הרשמה</a></li>
-            <li *ngIf="!isLoggedIn()"><a [routerLink]="['signin']">התחברות</a></li>
-            <li *ngIf="isLoggedIn()"><a href='#'>התאמות</a></li>
-            <li *ngIf="isLoggedIn()"><a href='#'>מועדפים</a></li>
-            <li *ngIf="isLoggedIn()"><a href='#'>הודעות</a></li>
-            <li *ngIf="isLoggedIn()"><a [routerLink]="['logout']">יציאה</a></li>
-            <li *ngIf="isLoggedIn()"><a *ngIf="isDataAvailable" [routerLink]="['settings']">{{user.firstName}} <span class="glyphicon glyphicon-user"></span></a>
+            <li><a *ngIf="!isLoggedIn"[routerLink]="['signup']">הרשמה</a></li>
+            <li *ngIf="!isLoggedIn"><a [routerLink]="['signin']">התחברות</a></li>
+            <li *ngIf="isLoggedIn"><a href='#'>התאמות</a></li>
+            <li *ngIf="isLoggedIn"><a href='#'>מועדפים</a></li>
+            <li *ngIf="isLoggedIn"><a href='#'>הודעות</a></li>
+            <li *ngIf="isLoggedIn"><a [routerLink]="['logout']">יציאה</a></li>
+            <li *ngIf="isLoggedIn"><a  [routerLink]="['settings']">{{authService.userName}} <span class="glyphicon glyphicon-user"></span></a>
             </li>
           </ul>
-          <form *ngIf="isLoggedIn()" class="navbar-form navbar-right">
+          <form *ngIf="isLoggedIn" class="navbar-form navbar-right">
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="חפש..">
               </div>

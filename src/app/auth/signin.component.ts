@@ -22,8 +22,10 @@ export class SigninComponent implements OnInit{
             .subscribe(
                 // saving the data to the local storage of the browser 
                 data => {
+
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('userId', data.userId);
+                    this.authService.getProfile().subscribe(u=>{})
                     this.router.navigateByUrl('/search'); // was only '/'
                 },
                 error => console.error(error)

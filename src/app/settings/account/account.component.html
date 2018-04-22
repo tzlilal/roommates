@@ -1,4 +1,3 @@
-<div *ngIf="isDataAvailable">
 <form>
     <div class="form-group row">
         <label for="firstName">שם פרטי</label>
@@ -7,7 +6,7 @@
                   type="text"
                   id="firstName"
                   class="form-control"
-                  [value]="user.firstName">
+                  [value]="user?.firstName">
         </div>
     </div>
     <div class="form-group row">
@@ -17,7 +16,7 @@
                   type="text"
                   id="lastName"
                   class="form-control"
-                  [value]="user.lastName">
+                  [value]="user?.lastName">
         </div>
     </div>
     <div class="form-group row">
@@ -27,7 +26,7 @@
                   type="email"
                   id="email"
                   class="form-control"
-                  [value]="user.email">
+                  [value]="user?.email">
         </div>
     </div>
     <div class="form-group row">
@@ -67,4 +66,3 @@
     class="btn btn-primary"
     type="submit">שמור</button>
 </form>
-</div>

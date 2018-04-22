@@ -11,17 +11,13 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class AccountComponent implements OnInit {
   user: User;
-  isDataAvailable: boolean; 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.isDataAvailable = false; 
     this.authService.getProfile().subscribe(
-      user => 
-        this.user = user, 
-      error => console.log(error), 
-      () => this.isDataAvailable = true
-    ); 
+      (user: User) => {
+        this.user = user
+      }); 
   }
 
 }
