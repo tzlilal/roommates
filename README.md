@@ -40,7 +40,7 @@ Tzlil Alfasi <img src="https://avatars0.githubusercontent.com/u/26070514?s=460&v
 
 Run mongod, mongo files
 
-Run `npm run build` to build the project.
+Run `ng build -w` to build the project.
 
 Run `node server.js` for a dev server. Navigate to `http://localhost:3000/`. 
 
