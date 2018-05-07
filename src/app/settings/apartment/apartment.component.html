@@ -1,3 +1,157 @@
-<p>
-  apartment works!
-</p>
+<form>
+  <div class="form-group row">
+      <label for="city">עיר / ישוב</label>
+      <div class="col-sm-10">
+        <select id="city" class="form-control">
+          <option selected>בחר</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="street">רחוב</label>
+      <div class="col-sm-10">
+        <select id="street" class="form-control">
+          <option selected>בחר</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="neighborhood">שם השכונה</label>
+      <div class="col-sm-10">
+        <select id="neighborhood" class="form-control">
+          <option selected>בחר</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="price">מחיר</label>
+      <div class="col-sm-10">
+        <select id="price" class="form-control">
+          <option selected>בחר</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="arnona">ארנונה לחודשיים</label>
+      <div class="col-sm-10">
+        <select id="arnona" class="form-control">
+          <option selected>בחר</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="paymentsOverAYear">תשלומים בשנה</label>
+      <div class="col-sm-10">
+        <select id="paymentsOverAYear" class="form-control">
+          <option selected>בחר</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="numOfRooms">מספר חדרים</label>
+      <div class="col-sm-10">
+        <select id="numOfRooms" class="form-control">
+          <option selected>בחר</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="sizeInSquareMeter">גודל במ"ר</label>
+      <div class="col-sm-10">
+        <select id="sizeInSquareMeter" class="form-control">
+          <option selected>בחר</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="enterDate">תאריך כניסה</label>
+      <div class="col-sm-10">
+        <select id="enterDate" class="form-control">
+          <option selected>בחר</option>
+        </select>
+      </div> 
+      <div class="form-check form-check-inline col-sm-10">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+        <label class="form-check-label" for="inlineRadio1">מיידי</label>
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+        <label class="form-check-label" for="inlineRadio2">גמיש</label>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="airConditioner">מזגן</label>
+      <div class="col-sm-10">
+        <select id="airConditioner" class="form-control">
+          <option selected>אין</option>
+          <option>בחדרים</option>
+          <option>בחדרים ובסלון</option>
+          <option>בסלון</option>
+          <option>מיזוג מרכזי</option>
+          <option>מיני מרכזי</option>
+          <option>מפוצל</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="parking">חניה</label>
+      <div class="col-sm-10">
+        <select id="parking" class="form-control">
+          <option selected>אין</option>
+          <option>ברחוב</option>
+          <option>חניה משותפת</option>
+          <option>חניון בתשלום ליד</option>
+          <option>פרטית - לא מקורה</option>
+          <option>פרטית - מקורה</option>
+          <option>רחבה ציבורית </option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="numOfbalconies">מספר מרפסות</label>
+      <div class="col-sm-10">
+        <select id="numOfbalconies" class="form-control">
+          <option selected>אין</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="floorNum">קומה</label>
+      <div class="col-sm-10">
+        <select id="floorNum" class="form-control">
+          <option *ngFor="let floor of floors_arr">{{ floor }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="animals"></label>
+      <div class="col-sm-10">
+        <input type="checkbox" id="animals" value="dog">
+        <label for="dog">סורגים</label>
+        <input type="checkbox" id="animals" value="cat">
+        <label for="cat">מעלית</label>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="form-check form-check-inline">
+          <label for="enterDate">ריהוט</label>
+          <div class="col-sm-10">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+            <label class="form-check-label" for="inlineRadio1">כן</label>
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+            <label class="form-check-label" for="inlineRadio2">לא</label>
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+            <label class="form-check-label" for="inlineRadio2">חלקי</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+        <label for="additionalInfo">פירוט הריהוט</label>
+        <textarea class="form-control" id="additionalInfo" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="additionalInfo">הערות נוספות</label>
+        <textarea class="form-control" id="additionalInfo" rows="3"></textarea>
+    </div>
+</form>
