@@ -2,7 +2,7 @@
     <!-- info about where to live -->
   <div class="form-group row">
   <h4>פרטים לגבי הדירה:</h4>
-  <label for="city">עיר הדירה</label>
+  <label for="city">עיר / ישוב</label>
   <div class="col-sm-10">
     <select id="city" class="form-control">
       <option selected>בחר</option>
@@ -14,9 +14,15 @@
     <div class="col-sm-10">
       <input class="form-control" type="date" id="date-input">
     </div>
+    <div class="form-check form-check-inline col-sm-10">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+      <label class="form-check-label" for="inlineRadio1">מיידי</label>
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+      <label class="form-check-label" for="inlineRadio2">גמיש</label>
+    </div>
   </div>
   <div class="form-group row">
-    <label for="maxBudget">שכר דירה מקסימלי (חודשי)</label>
+    <label for="maxPrice">שכר דירה מקסימלי (חודשי)</label>
     <div class="col-sm-10">
       <input
               type="number"
@@ -66,12 +72,70 @@
     <div class="col-sm-10">
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-        <label class="form-check-label" for="inlineRadio1">עם</label>
+        <label class="form-check-label" for="inlineRadio1">כן</label>
         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-        <label class="form-check-label" for="inlineRadio2">בלי</label>
+        <label class="form-check-label" for="inlineRadio2">לא</label>
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+        <label class="form-check-label" for="inlineRadio2">חלקי</label>
         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
         <label class="form-check-label" for="inlineRadio3">לא רלוונטי</label>
       </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="airConditioner">מזגן</label>
+    <div class="col-sm-10">
+      <select id="airConditioner" class="form-control">
+        <option selected>אין</option>
+        <option>בחדרים</option>
+        <option>בחדרים ובסלון</option>
+        <option>בסלון</option>
+        <option>מיזוג מרכזי</option>
+        <option>מיני מרכזי</option>
+        <option>מפוצל</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="parking">חניה</label>
+    <div class="col-sm-10">
+      <select id="parking" class="form-control">
+        <option selected>אין</option>
+        <option>ברחוב</option>
+        <option>חניה משותפת</option>
+        <option>חניון בתשלום ליד</option>
+        <option>פרטית - לא מקורה</option>
+        <option>פרטית - מקורה</option>
+        <option>רחבה ציבורית </option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="numOfbalconies">מספר מרפסות</label>
+    <div class="col-sm-10">
+      <select id="numOfbalconies" class="form-control">
+        <option selected>אין</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="floorNum">קומה</label>
+    <div class="col-sm-10">
+      <select id="floorNum" class="form-control">
+        <option *ngFor="let floor of floors_arr">{{ floor }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="animals"></label>
+    <div class="col-sm-10">
+      <input type="checkbox" id="animals" value="dog">
+      <label for="dog">סורגים</label>
+      <input type="checkbox" id="animals" value="cat">
+      <label for="cat">מעלית</label>
     </div>
   </div>
   <button

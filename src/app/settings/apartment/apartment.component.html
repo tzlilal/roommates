@@ -40,7 +40,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <label for="paymentsOverAYear">תשלומים בשנה</label>
+      <label for="paymentsOverAYear">מספר תשלומים בשנה</label>
       <div class="col-sm-10">
         <select id="paymentsOverAYear" class="form-control">
           <option selected>בחר</option>
@@ -55,6 +55,24 @@
         </select>
       </div>
     </div>
+    <div class="form-group row">
+        <label for="numOfRoomies">מספר שותפים קיימים</label>
+        <div class="col-sm-10">
+          <select id="numOfRoomies" class="form-control">
+            <option selected>0</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+          </select>
+        </div>
+      </div>
     <div class="form-group row">
       <label for="sizeInSquareMeter">גודל במ"ר</label>
       <div class="col-sm-10">
@@ -134,8 +152,19 @@
       </div>
     </div>
     <div class="form-group row">
+        <label for="optionForAnimals">אפשרות לבעלי חיים</label>
+        <div class="col-sm-10">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+            <label class="form-check-label" for="inlineRadio1">כן</label>
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+            <label class="form-check-label" for="inlineRadio2">לא</label>
+          </div>
+        </div>
+      </div>
+    <div class="form-group row">
       <div class="form-check form-check-inline">
-          <label for="enterDate">ריהוט</label>
+          <label for="furniture">ריהוט</label>
           <div class="col-sm-10">
             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
             <label class="form-check-label" for="inlineRadio1">כן</label>
@@ -147,7 +176,7 @@
       </div>
     </div>
     <div class="form-group">
-        <label for="additionalInfo">פירוט הריהוט</label>
+        <label for="additionalFurnitureInfo">פירוט הריהוט</label>
         <textarea class="form-control" id="additionalInfo" rows="3"></textarea>
     </div>
     <div class="form-group">

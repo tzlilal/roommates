@@ -20,4 +20,8 @@ export class AccountComponent implements OnInit {
       }); 
   }
 
+  onDeleteAccount() { }
+
+  onDeactivate() { }
+
 }

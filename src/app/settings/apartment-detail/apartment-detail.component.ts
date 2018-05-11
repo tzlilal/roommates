@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsService } from '../forms.service';
 
 @Component({
   selector: 'app-apartment-detail',
@@ -6,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./apartment-detail.component.css']
 })
 export class ApartmentDetailComponent implements OnInit {
-
-  constructor() { }
-
+  floors_arr = [];
+  constructor(private formsService: FormsService) {
+    this.floors_arr = this.formsService.floors;
+   }
+  
   ngOnInit() {
   }
 

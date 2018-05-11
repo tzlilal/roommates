@@ -7,8 +7,16 @@ var schema = new Schema({
     lastName: {type: String, required: true},
     password: {type: String, required: true},
     email: {type: String, required: true, unique: true},
-    messages: [{type: Schema.Types.ObjectId, ref: 'Message'}] // all the messages created by the user 
+    registryDate: {type: Date}, 
+    isActive: {type: Boolean},
+    phoneNumber: {type: Number}, 
+    messages: [{type: Schema.Types.ObjectId, ref: 'Message'}], // all the messages created by the user 
     // ref - this messages field has a connection to anothor model - in this case to the "Message" model
+    userDetail: {type: Schema.Types.ObjectId, ref: 'UserDetail'}, 
+    roommateDetail: {type: Schema.Types.ObjectId, ref: 'RoommateDetail'}, 
+    apartment: {type: Schema.Types.ObjectId, ref: 'Apartment'}, 
+    apartmentDetail: {type: Schema.Types.ObjectId, ref: 'ApartmentDetail'}
+    // add picture model 
 });
 
 schema.plugin(mongooseUniqueValidator);
