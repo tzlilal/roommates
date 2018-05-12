@@ -24,6 +24,7 @@ import { SearchComponent } from './search/search.component';
 import { AuthGuard } from './auth/auth-guard.service';
 import { ApartmentDetailComponent } from './settings/apartment-detail/apartment-detail.component';
 import { FormsService } from './settings/forms.service';
+import { SettingsService } from './settings/settings.service';
  
 
 @NgModule({
@@ -52,7 +53,7 @@ import { FormsService } from './settings/forms.service';
     HttpModule, 
     FormsModule
   ],
-  providers: [AuthService, AuthGuard, FormsService],
+  providers: [AuthService, AuthGuard, FormsService, SettingsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

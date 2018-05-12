@@ -12,7 +12,9 @@ router.post('/', (req, res, next) => {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     password: bcrypt.hashSync(req.body.password, 10), // returning hashed password
-    email: req.body.email
+    email: req.body.email, 
+    registryDate: new Date(), 
+    isActive: true
   });
   user.save(function(err, result){
     if(err){
@@ -88,6 +90,36 @@ router.get('/search', function (req, res, next) {
                 obj: users
             });
         }); 
+});
+
+router.post('/account', function (req, res, next) {
+    let decoded = jwt.decode(req.query.token);
+    User.findById(decoded.user._id, function (err, user) {
+        if (err) {
+            return res.status(500).json({
+                title: 'An error occurred',
+                error: err
+            });
+        }
+        user.firstName = req.body.firstName;
+        user.lastName = req.body.lastName; 
+        user.password = bcrypt.hashSync(req.body.password, 10);
+        user.email = req.body.email; 
+        user.phoneNumber = req.body.phoneNumber; 
+
+        user.save(function(err, result) {
+            if(err){
+              return res.status(500).json({
+                title: 'An error occured', 
+                error: err
+              });
+            }
+            res.status(201).json({
+              message: 'User updated',
+              obj: result
+            });
+        }); 
+    })   
 });
 
 module.exports = router;

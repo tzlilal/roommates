@@ -9,7 +9,7 @@ var schema = new Schema({
     email: {type: String, required: true, unique: true},
     registryDate: {type: Date}, 
     isActive: {type: Boolean},
-    phoneNumber: {type: Number}, 
+    phoneNumber: {type: String}, 
     messages: [{type: Schema.Types.ObjectId, ref: 'Message'}], // all the messages created by the user 
     // ref - this messages field has a connection to anothor model - in this case to the "Message" model
     userDetail: {type: Schema.Types.ObjectId, ref: 'UserDetail'}, 
