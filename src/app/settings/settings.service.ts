@@ -20,4 +20,16 @@ export class SettingsService {
       .catch((error: Response) => Observable.throw(error.json()));
   }
 
+  setUserDetail(userDetail) {
+    const body = JSON.stringify(userDetail); 
+    const token = localStorage.getItem("token")
+    ? "?token=" + localStorage.getItem("token")
+    : "";
+    const headers = new Headers({ "Content-Type": "application/json" });
+    return this.http
+      .post("http://localhost:3000/api/userDetail" + token, body, { headers: headers })
+      .map((response: Response) => console.log(response.json))
+      .catch((error: Response) => Observable.throw(error.json()));
+  }
+
 }

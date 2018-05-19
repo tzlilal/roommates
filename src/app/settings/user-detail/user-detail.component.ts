@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
 import { FormsService } from '../forms.service';
 import { UserDetail } from './user-detail.model';
+import { SettingsService } from '../settings.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -14,7 +15,7 @@ export class UserDetailComponent implements OnInit {
   user_age = []; 
   userDetail: UserDetail = new UserDetail(); 
 
-  constructor(private formsService: FormsService) { 
+  constructor(private formsService: FormsService, private settingsService: SettingsService) { 
     this.user_age = formsService.getAges(); 
   }
   // ADD VALIDATION 
@@ -63,7 +64,11 @@ export class UserDetailComponent implements OnInit {
     this.userDetail.smoking = this.userDetailForm.value.smoking; 
     this.userDetail.cleaning = this.userDetailForm.value.cleaning; 
     this.userDetail.additionalInfo = this.userDetailForm.value.additionalInfo; 
-    
+    this.settingsService.setUserDetail(this.userDetail)
+    .subscribe(
+      data => console.log(data),
+      error => console.error(error)
+    );
   }
 
 }

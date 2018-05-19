@@ -6,6 +6,7 @@ var jwt = require('jsonwebtoken');
 
 const config = require('../config/database');
 const User = require('../../models/user');
+const UserDetail = require('../../models/user-detail'); 
 
 router.post('/', (req, res, next) => {
   let user = new User({
@@ -119,6 +120,98 @@ router.post('/account', function (req, res, next) {
               obj: result
             });
         }); 
+    })   
+});
+
+router.post('/userDetail', function (req, res, next) {
+    // User.findOne({email: "tzlil@gmail.com"}, function(err, user) {
+    //     if(err){
+    //         return res.status(500).json({
+    //             title: 'An error occurred',
+    //             error: err
+    //         });
+    //     }
+    //     let userDetail = new UserDetail({
+    //         sex: "aaaaa", 
+    //         age: "bbbbb",
+    //         martialStatus: "cccc", 
+    //         hasChildren: "dddddd", 
+    //         occupation: "dsfdfs",
+    //         sexualOrient: "sdfsdf",
+    //         religion: "sdfdsfn", 
+    //         kosher: "dssggg",
+    //         kitchen: "sdgdsg", 
+    //         diet: "sdfrg", 
+    //         smoking: "fdgbbbb", 
+    //         animals: "sfdgg", 
+    //         cleaning: "sdfdvb", 
+    //         additionalInfo: "sdfdsf"
+    //     }); 
+    //     userDetail.save(function(err, result) {
+    //         if(err){
+    //           return res.status(500).json({
+    //             title: 'An error occured', 
+    //             error: err
+    //           });
+    //         }
+    //         res.status(201).json({
+    //           message: 'User updated',
+    //           obj: result
+    //         })
+    //     });
+    //     user.userDetail = userDetail; 
+
+    //     user.save(function(err, result) {
+    //         if(err){
+    //           return res.status(500).json({
+    //             title: 'An error occured', 
+    //             error: err
+    //           });
+    //         }
+    //         res.status(201).json({
+    //           message: 'User updated',
+    //           obj: result
+    //         });
+    //     }); 
+    // }); 
+    let decoded = jwt.decode(req.query.token);
+    User.findById(decoded.user._id, function (err, user) {
+        if (err) {
+            return res.status(500).json({
+                title: 'An error occurred',
+                error: err
+            });
+        }
+        let userDetail = new UserDetail({
+            sex: req.body.sex, 
+            age: req.body.age,
+            martialStatus: req.body.martialStatus, 
+            hasChildren: req.body.hasChildren, 
+            occupation: req.body.occupation,
+            sexualOrient: req.body.sexualOrient,
+            religion: req.body.religion, 
+            kosher: req.body.kosher,
+            kitchen: req.body.kitchen, 
+            diet: req.body.diet, 
+            smoking: req.body.smoking, 
+            animals: req.body.animals, 
+            cleaning: req.body.cleaning, 
+            additionalInfo: req.body.additionalInfo
+        }); 
+        userDetail.save(function(err, result) {
+            if(err){
+              return res.status(500).json({
+                title: 'An error occured', 
+                error: err
+              });
+            }
+            user.userDetail = result; 
+            user.save(); 
+            res.status(201).json({
+              message: 'User updated',
+              obj: result
+            })
+        });
     })   
 });
 
