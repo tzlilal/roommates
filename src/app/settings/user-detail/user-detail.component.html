@@ -1,9 +1,9 @@
-<form>
+<form [formGroup]="userDetailForm" (ngSubmit)="onSubmit()">
   <div class="form-group row">
-      <label for="gender">מין</label>
+      <label for="sex">מין</label>
       <div class="col-sm-10">
-        <select id="gender" class="form-control">
-          <option selected>זכר</option>
+        <select id="sex" class="form-control" formControlName="sex">
+          <option>זכר</option>
           <option>נקבה</option>
         </select>
       </div>
@@ -11,15 +11,16 @@
     <div class="form-group row">
       <label for="age">גיל</label>
       <div class="col-sm-10">
-          <select id="age" class="form-control">
+          <select id="age" class="form-control" formControlName="age">
+            <option></option>
             <option *ngFor="let age of user_age">{{ age }}</option>
           </select>
       </div>
     </div>
     <div class="form-group row">
-      <label for="gender">מצב משפחתי</label>
+      <label for="martialStatus">מצב משפחתי</label>
       <div class="col-sm-10">
-        <select id="gender" class="form-control">
+        <select id="martialStatus" class="form-control" formControlName="martialStatus"> 
           <option selected>רווק</option>
           <option>בזוגיות</option>
           <option>מאורס</option>
@@ -29,9 +30,9 @@
       </div>
     </div>
     <div class="form-group row">
-      <label for="children">ילדים</label>
+      <label for="hasChildren">ילדים</label>
       <div class="col-sm-10">
-        <select id="children" class="form-control">
+        <select id="hasChildren" class="form-control" formControlName="hasChildren">
           <option selected>יש ילדים</option>
           <option>אין ילדים</option>
           <option>לא רלוונטי</option>
@@ -41,7 +42,7 @@
     <div class="form-group row">
       <label for="occupation">עיסוק</label>
       <div class="col-sm-10">
-        <select id="occupation" class="form-control">
+        <select id="occupation" class="form-control" formControlName="occupation">
           <option selected>עובד במשרה מלאה</option>
           <option>עובד במשרה חלקית</option>
           <option>סטודנט</option>
@@ -54,7 +55,7 @@
     <div class="form-group row">
       <label for="sexualOrient">נטייה מינית</label>
       <div class="col-sm-10">
-        <select id="sexualOrient" class="form-control">
+        <select id="sexualOrient" class="form-control" formControlName="sexualOrient">
           <option selected>סטרייט</option>
           <option>גיי</option>
         </select>
@@ -63,7 +64,7 @@
     <div class="form-group row">
       <label for="religion">דת</label>
       <div class="col-sm-10">
-        <select id="religion" class="form-control">
+        <select id="religion" class="form-control" formControlName="religion">
           <option selected>חילוני</option>
           <option>מסורתי ששומר שבת</option>
           <option>דתי</option>
@@ -75,7 +76,7 @@
     <div class="form-group row">
       <label for="kosher">כשרות</label>
       <div class="col-sm-10">
-        <select id="kosher" class="form-control">
+        <select id="kosher" class="form-control" formControlName="kosher">
           <option selected>שומר כשרות</option>
           <option>לא שומר כשרות</option>
           <option>לא רלוונטי</option>
@@ -85,7 +86,7 @@
     <div class="form-group row">
       <label for="kitchen">מטבח</label>
       <div class="col-sm-10">
-        <select id="kitchen" class="form-control">
+        <select id="kitchen" class="form-control" formControlName="kitchen">
           <option selected>כשר</option>
           <option>לא כשר</option>
           <option>לא רלוונטי</option>
@@ -95,7 +96,7 @@
     <div class="form-group row">
       <label for="diet">תזונה</label>
       <div class="col-sm-10">
-        <select id="diet" class="form-control">
+        <select id="diet" class="form-control" formControlName="diet">
           <option selected>רגילה</option>
           <option selected>צמחונית</option>
           <option>טבעונית</option>
@@ -106,7 +107,7 @@
     <div class="form-group row">
       <label for="smoking">עישון</label>
       <div class="col-sm-10">
-        <select id="smoking" class="form-control">
+        <select id="smoking" class="form-control" formControlName="smoking">
           <option selected>מעשן</option>
           <option>לא מעשן</option>
           <option>לא רלוונטי</option>
@@ -116,18 +117,17 @@
     <div class="form-group row">
       <label for="animals">מחזיק בע"ח</label>
       <div class="col-sm-10">
-        <input type="checkbox" id="animals" value="dog">
-        <label for="dog">כלב</label>
-        <input type="checkbox" id="animals" value="cat">
-        <label for="cat">חתול</label>
-        <input type="checkbox" id="animals" value="other">
-        <label for="other">אחר</label>
+        <span *ngFor="let animal of animals.controls">
+          <input type="checkbox" id="animals"  (change)="change(animal.value)">
+          <label>{{ animal.value }}</label>
+        </span>
+
       </div>
     </div>
     <div class="form-group row">
       <label for="cleaning">נקיון</label>
       <div class="col-sm-10">
-        <select id="cleaning" class="form-control">
+        <select id="cleaning" class="form-control" formControlName="cleaning">
           <option selected>נקי</option>
           <option>ממוצע</option>
           <option>לא נקי</option>
@@ -137,10 +137,10 @@
     </div>
     <div class="form-group">
       <label for="additionalInfo">מידע נוסף</label>
-      <textarea class="form-control" id="additionalInfo" rows="3"></textarea>
+      <textarea class="form-control" id="additionalInfo" rows="3" formControlName="additionalInfo"></textarea>
     </div>
     <button
             class="btn btn-primary"
             type="submit">שמור</button>
             <!-- disabling the button if one of the fields (or all of them) is not valid -->
-  </form>  
+</form> 
