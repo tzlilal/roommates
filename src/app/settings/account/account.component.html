@@ -6,9 +6,10 @@
                   type="text"
                   id="firstName"
                   class="form-control"
-                  [value]="user?.firstName"
+                  [value]="authService.user?.firstName"
                   formControlName="firstName"
-                  >
+                  (change)="change('firstName', $event)">
+                  <!-- send name of value and value  -->
         </div>
     </div>
     <div class="form-group row">
@@ -18,8 +19,9 @@
                   type="text"
                   id="lastName"
                   class="form-control"
-                  [value]="user?.lastName"
-                  formControlName="lastName">
+                  [value]="authService.user?.lastName"
+                  formControlName="lastName"
+                  (change)="change('lastName', $event)">
         </div>
     </div>
     <div class="form-group row">
@@ -29,8 +31,9 @@
                   type="email"
                   id="email"
                   class="form-control"
-                  [value]="user?.email"
-                  formControlName="email">
+                  [value]="authService.user?.email"
+                  formControlName="email"
+                  (change)="change('email', $event)">
         </div>
     </div>
     <div class="form-group row">
@@ -59,7 +62,9 @@
                 type="number"
                 id="phoneNumber"
                 class="form-control"
-                formControlName="phoneNumber">
+                [value]="authService.user?.phoneNumber"
+                formControlName="phoneNumber"
+                (change)="change('phoneNumber', $event)">
       </div>
     </div>
     <div class="form-check">

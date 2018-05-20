@@ -44,6 +44,10 @@ export class AuthService {
     return this.currentUser ? this.currentUser.firstName : "";
   }
 
+  get user() {
+    return this.currentUser ? this.currentUser : null;
+  }
+
   getProfile() {
     if (this.currentUser) {
         let o = new ReplaySubject<User>()
@@ -62,7 +66,8 @@ export class AuthService {
           result.result.email,
           result.result.password,
           result.result.firstName,
-          result.result.lastName
+          result.result.lastName,
+          result.result.phoneNumber
         );
         this.currentUser = user;
         // debugger

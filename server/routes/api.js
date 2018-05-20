@@ -94,6 +94,7 @@ router.get('/search', function (req, res, next) {
 });
 
 router.post('/account', function (req, res, next) {
+    console.log(req); 
     let decoded = jwt.decode(req.query.token);
     User.findById(decoded.user._id, function (err, user) {
         if (err) {
@@ -102,12 +103,16 @@ router.post('/account', function (req, res, next) {
                 error: err
             });
         }
-        user.firstName = req.body.firstName;
-        user.lastName = req.body.lastName; 
-        user.password = bcrypt.hashSync(req.body.password, 10);
-        user.email = req.body.email; 
-        user.phoneNumber = req.body.phoneNumber; 
-
+        if('firstName' in req.body)
+            user.firstName = req.body.firstName;
+        if('lastName' in req.body)
+            user.lastName = req.body.lastName; 
+        if('password' in req.body)
+            user.password = bcrypt.hashSync(req.body.password, 10);
+        if('email' in req.body)
+            user.email = req.body.email; 
+        if('phoneNumber' in req.body)
+            user.phoneNumber = req.body.phoneNumber; 
         user.save(function(err, result) {
             if(err){
               return res.status(500).json({

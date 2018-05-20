@@ -22,7 +22,7 @@
             <li *ngIf="isLoggedIn"><a href='#'>מועדפים</a></li>
             <li *ngIf="isLoggedIn"><a href='#'>הודעות</a></li>
             <li *ngIf="isLoggedIn"><a [routerLink]="['logout']">יציאה</a></li>
-            <li *ngIf="isLoggedIn"><a  [routerLink]="['settings']">{{authService.userName}} <span class="glyphicon glyphicon-user"></span></a>
+            <li *ngIf="isLoggedIn"><a  [routerLink]="['settings']">{{ authService.userName }} <span class="glyphicon glyphicon-user"></span></a>
             </li>
           </ul>
           <form *ngIf="isLoggedIn" class="navbar-form navbar-right">
