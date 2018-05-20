@@ -32,8 +32,8 @@ export class AccountComponent implements OnInit {
     });
   }
 
-  change(field, newData: Event) {
-    this.tempUser[field] = newData.target.value; 
+  change(field, newData) {
+    this.tempUser[field] = (newData.target as HTMLInputElement).value; 
   }
 
   onSubmit() { 

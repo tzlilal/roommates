@@ -43,7 +43,8 @@
                   type="password"
                   id="password"
                   class="form-control"
-                  formControlName="password">
+                  formControlName="password"
+                  (change)="change('password', $event)">
         </div>
     </div>
     <div class="form-group row">
