@@ -18,7 +18,7 @@ export class AccountComponent implements OnInit {
 
   ngOnInit() { 
     this.accountForm = new FormGroup({
-      firstName: new FormControl(null, Validators.required), 
+      firstName: new FormControl(null, [Validators.required, Validators.minLength(2)]), 
       lastName: new FormControl(null, Validators.required), 
       email: new FormControl(null, [
           Validators.required,
@@ -32,6 +32,10 @@ export class AccountComponent implements OnInit {
     });
   }
 
+  get firstName() {
+    return this.accountForm.get("firstName"); 
+  }
+
   change(field, newData) {
     this.tempUser[field] = (newData.target as HTMLInputElement).value; 
   }
@@ -42,6 +46,9 @@ export class AccountComponent implements OnInit {
       data => console.log(data),
       error => console.error(error)
     );
+  }
+  onUploadFinished(e) {
+    console.log(e.file); 
   }
 
   onDeleteAccount() { }

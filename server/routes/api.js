@@ -7,6 +7,7 @@ var jwt = require('jsonwebtoken');
 const config = require('../config/database');
 const User = require('../../models/user');
 const UserDetail = require('../../models/user-detail'); 
+const RoommateDetail = require('../../models/roommate-detail'); 
 
 router.post('/', (req, res, next) => {
   let user = new User({
@@ -219,5 +220,49 @@ router.post('/userDetail', function (req, res, next) {
         });
     })   
 });
+
+router.post('/roommateDetail', function (req, res, next) {
+    let decoded = jwt.decode(req.query.token);
+    User.findById(decoded.user._id, function (err, user) {
+        if (err) {
+            return res.status(500).json({
+                title: 'An error occurred',
+                error: err
+            });
+        }
+        let roommateDetail = new RoommateDetail({
+            minAge: req.body.minAge, 
+            maxAge: req.body.maxAge,
+            female: req.body.female, 
+            male: req.body.male, 
+            religion: req.body.religion, 
+            kosher: req.body.kosher,
+            kitchen: req.body.kitchen, 
+            diet: req.body.diet, 
+            smoking: req.body.smoking, 
+            animals: req.body.animals, 
+            cleaning: req.body.cleaning, 
+        }); 
+        roommateDetail.save(function(err, result) {
+            if(err){
+              return res.status(500).json({
+                title: 'An error occured', 
+                error: err
+              });
+            }
+            user.roommateDetail = result; 
+            user.save(); 
+            res.status(201).json({
+              message: 'User updated',
+              obj: result
+            })
+        });
+    })   
+});
+
+router.post('/image', function(req, res, next) {
+    console.log(req.body); 
+    res.send("dsfdsf"); 
+}); 
 
 module.exports = router;

@@ -13,7 +13,7 @@ import { SettingsService } from '../settings.service';
 export class UserDetailComponent implements OnInit {
   userDetailForm: FormGroup;
   user_age = []; 
-  userDetail: UserDetail = new UserDetail(); 
+  userDetail= new UserDetail(); 
 
   constructor(private formsService: FormsService, private settingsService: SettingsService) { 
     this.user_age = formsService.getAges(); 

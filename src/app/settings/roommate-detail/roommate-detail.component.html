@@ -1,15 +1,15 @@
-<form>
+<form [formGroup]="roommateDetailForm" (ngSubmit)="onSubmit()">
     <div class="form-group row">
       <label for="roommate-age">טווח גיל</label>
       <div class="col-sm-10">
           <div class="col-sm-5">
-            <select id="age" class="form-control">
+            <select id="age" class="form-control" formControlName="minAge">
                 <option *ngFor="let age of rommate_age">{{ age }}</option>
             </select>
             עד
           </div>
           <div class="col-sm-5">
-            <select id="age" class="form-control">
+            <select id="age" class="form-control" formControlName="maxAge">
                 <option *ngFor="let age of rommate_age">{{ age }}</option>
             </select>
           </div>
@@ -18,7 +18,7 @@
     <div class="form-group row">
       <label for="roommate-female">נקבה</label>
       <div class="col-sm-10">
-        <select id="roommate-female" class="form-control">
+        <select id="roommate-female" class="form-control" formControlName="female">
           <option selected>סטרייט</option>
           <option>לסבית</option>
           <option>בלי נקבות</option>
@@ -28,7 +28,7 @@
     <div class="form-group row">
       <label for="roommate-male">זכר</label>
       <div class="col-sm-10">
-        <select id="roommate-male" class="form-control">
+        <select id="roommate-male" class="form-control"  formControlName="male">
           <option selected>סטרייט</option>
           <option>גיי</option>
           <option>בלי זכרים</option>
@@ -38,7 +38,7 @@
     <div class="form-group row">
       <label for="roommate-religion">דת</label>
       <div class="col-sm-10">
-        <select id="roommate-religion" class="form-control">
+        <select id="roommate-religion" class="form-control" formControlName="religion">
             <option selected>חילוני</option>
             <option>מסורתי ששומר שבת</option>
             <option>דתי</option>
@@ -50,7 +50,7 @@
     <div class="form-group row">
       <label for="roommate-kosher">כשרות</label>
       <div class="col-sm-10">
-        <select id="roommate-kosher" class="form-control">
+        <select id="roommate-kosher" class="form-control" formControlName="kosher">
           <option selected>שומר כשרות</option>
           <option>לא שומר כשרות</option>
         </select>
@@ -59,7 +59,7 @@
     <div class="form-group row">
       <label for="roommate-kitchen">מטבח</label>
       <div class="col-sm-10">
-        <select id="roommate-kitchen" class="form-control">
+        <select id="roommate-kitchen" class="form-control" formControlName="kitchen">
             <option selected>כשר</option>
             <option>לא כשר</option>
             <option>לא רלוונטי</option>
@@ -69,7 +69,7 @@
     <div class="form-group row">
       <label for="roommate-diet">תזונה</label>
       <div class="col-sm-10">
-        <select id="roommate-diet" class="form-control">
+        <select id="roommate-diet" class="form-control" formControlName="diet">
             <option selected>רגילה</option>
             <option selected>צמחונית</option>
             <option>טבעונית</option>
@@ -80,7 +80,7 @@
     <div class="form-group row">
       <label for="roommate-smoking">עישון</label>
       <div class="col-sm-10">
-        <select id="roommate-smoking" class="form-control">
+        <select id="roommate-smoking" class="form-control" formControlName="smoking">
             <option selected>מעשן</option>
             <option>לא מעשן</option>
             <option>לא רלוונטי</option>
@@ -90,7 +90,7 @@
     <div class="form-group row">
         <label for="roommate-animals">בעלי חיים</label>
         <div class="col-sm-10">
-          <select id="roommate-animals" class="form-control" name="first">
+          <select id="roommate-animals" class="form-control" name="first" formControlName="animals">
             <option selected>אוהב בעלי חיים</option>
             <option>לא אוהב בעלי חיים</option>
             <option>לא רלוונטי</option>
@@ -100,7 +100,7 @@
       <div class="form-group row">
           <label for="roommate-cleaning">נקיון</label>
           <div class="col-sm-10">
-            <select id="roommate-cleaning" class="form-control">
+            <select id="roommate-cleaning" class="form-control" formControlName="cleaning">
               <option selected>נקי</option>
               <option>ממוצע</option>
               <option>לא נקי</option>

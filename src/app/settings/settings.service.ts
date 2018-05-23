@@ -32,4 +32,18 @@ export class SettingsService {
       .catch((error: Response) => Observable.throw(error.json()));
   }
 
+  setRoommateDetail(roommateDetail) {
+    const body = JSON.stringify(roommateDetail); 
+    const token = localStorage.getItem("token")
+    ? "?token=" + localStorage.getItem("token")
+    : "";
+    const headers = new Headers({ "Content-Type": "application/json" });
+    return this.http
+      .post("http://localhost:3000/api/roommateDetail" + token, body, { headers: headers })
+      .map((response: Response) => console.log(response.json))
+      .catch((error: Response) => Observable.throw(error.json()));
+  }
+
+
+
 }

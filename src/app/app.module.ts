@@ -4,6 +4,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FormsModule }   from '@angular/forms'; // to delete and from imports
+import { ImageUploadModule } from "angular2-image-upload";
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -51,7 +52,8 @@ import { SettingsService } from './settings/settings.service';
     routing,
     ReactiveFormsModule,
     HttpModule, 
-    FormsModule
+    FormsModule,
+    ImageUploadModule.forRoot()
   ],
   providers: [AuthService, AuthGuard, FormsService, SettingsService],
   bootstrap: [AppComponent]
