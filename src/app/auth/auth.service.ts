@@ -50,8 +50,8 @@ export class AuthService {
 
   getProfile() {
     if (this.currentUser) {
-        let o = new ReplaySubject<User>()
-        o.next(this.currentUser)
+        let o = new ReplaySubject<User>();
+        o.next(this.currentUser);
         return o;
     }
     // debugger

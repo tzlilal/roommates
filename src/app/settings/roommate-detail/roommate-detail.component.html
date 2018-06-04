@@ -16,22 +16,25 @@
       </div>
     </div>
     <div class="form-group row">
-      <label for="roommate-female">נקבה</label>
+      <label for="roommate-female">מין</label>
       <div class="col-sm-10">
-        <select id="roommate-female" class="form-control" formControlName="female">
-          <option selected>סטרייט</option>
-          <option>לסבית</option>
-          <option>בלי נקבות</option>
+        <select id="roommate-female" class="form-control" formControlName="gender">
+          <option selected>זכר</option>
+          <option>נקבה</option>
+          <option>אין העדפה</option>
         </select>
       </div>
     </div>
     <div class="form-group row">
-      <label for="roommate-male">זכר</label>
+      <label for="occupation">עיסוק</label>
       <div class="col-sm-10">
-        <select id="roommate-male" class="form-control"  formControlName="male">
-          <option selected>סטרייט</option>
-          <option>גיי</option>
-          <option>בלי זכרים</option>
+        <select id="occupation" class="form-control" formControlName="occupation">
+          <option selected>עובד במשרה מלאה</option>
+          <option>עובד במשרה חלקית</option>
+          <option>סטודנט</option>
+          <option>חייל</option>
+          <option>ללא עיסוק</option>
+          <option>אין העדפה</option>
         </select>
       </div>
     </div>
@@ -43,16 +46,7 @@
             <option>מסורתי ששומר שבת</option>
             <option>דתי</option>
             <option>אתאיסט</option>
-            <option>לא רלוונטי</option>
-        </select>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="roommate-kosher">כשרות</label>
-      <div class="col-sm-10">
-        <select id="roommate-kosher" class="form-control" formControlName="kosher">
-          <option selected>שומר כשרות</option>
-          <option>לא שומר כשרות</option>
+            <option>אין העדפה</option>
         </select>
       </div>
     </div>
@@ -62,7 +56,7 @@
         <select id="roommate-kitchen" class="form-control" formControlName="kitchen">
             <option selected>כשר</option>
             <option>לא כשר</option>
-            <option>לא רלוונטי</option>
+            <option>אין העדפה</option>
         </select>
       </div>
     </div>
@@ -73,7 +67,7 @@
             <option selected>רגילה</option>
             <option selected>צמחונית</option>
             <option>טבעונית</option>
-            <option>לא רלוונטי</option>
+            <option>אין העדפה</option>
         </select>
       </div>
     </div>
@@ -83,7 +77,7 @@
         <select id="roommate-smoking" class="form-control" formControlName="smoking">
             <option selected>מעשן</option>
             <option>לא מעשן</option>
-            <option>לא רלוונטי</option>
+            <option>אין העדפה</option>
         </select>
       </div>
     </div>
@@ -93,10 +87,20 @@
           <select id="roommate-animals" class="form-control" name="first" formControlName="animals">
             <option selected>אוהב בעלי חיים</option>
             <option>לא אוהב בעלי חיים</option>
-            <option>לא רלוונטי</option>
+            <option>אין העדפה</option>
           </select>
         </div>
       </div>
+      <div class="form-group row">
+        <label for="roommate-playInstrument">כלי נגינה</label>
+        <div class="col-sm-10">
+          <select id="roommate-playInstrument" class="form-control" formControlName="playInstrument">
+            <option selected>מנגן בכלי נגינה</option>
+            <option>לא מנגן בכלי נגינה</option>
+            <option>אין העדפה</option>
+          </select>
+        </div>
+    </div>
       <div class="form-group row">
           <label for="roommate-cleaning">נקיון</label>
           <div class="col-sm-10">
@@ -104,10 +108,10 @@
               <option selected>נקי</option>
               <option>ממוצע</option>
               <option>לא נקי</option>
-              <option>לא רלוונטי</option>
+              <option>אין העדפה</option>
             </select>
           </div>
-        </div>
+      </div>
     <button
             class="btn btn-primary"
             type="submit"

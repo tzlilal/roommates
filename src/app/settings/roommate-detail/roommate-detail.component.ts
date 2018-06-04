@@ -23,14 +23,14 @@ export class RoommateDetailComponent implements OnInit {
     this.roommateDetailForm = new FormGroup({
       minAge: new FormControl(""), 
       maxAge: new FormControl(""),
-      female: new FormControl(""),
-      male: new FormControl(""), 
+      gender: new FormControl(""), 
+      occupation: new FormControl(""), 
       religion: new FormControl(""), 
-      kosher: new FormControl(""), 
       kitchen: new FormControl(""),
       diet: new FormControl(""),
       smoking: new FormControl(""),
       animals: new FormControl(""), 
+      playInstrument: new FormControl(""), 
       cleaning: new FormControl("")
     }); 
   }
@@ -38,14 +38,14 @@ export class RoommateDetailComponent implements OnInit {
   onSubmit() {
     this.roommateDetail.minAge = this.roommateDetailForm.value.minAge; 
     this.roommateDetail.maxAge = this.roommateDetailForm.value.maxAge; 
-    this.roommateDetail.female = this.roommateDetailForm.value.female; 
-    this.roommateDetail.male = this.roommateDetailForm.value.male;  
+    this.roommateDetail.gender = this.roommateDetailForm.value.gender; 
+    this.roommateDetail.occupation = this.roommateDetailForm.value.occupation; 
     this.roommateDetail.religion = this.roommateDetailForm.value.religion; 
-    this.roommateDetail.kosher = this.roommateDetailForm.value.kosher; 
     this.roommateDetail.kitchen = this.roommateDetailForm.value.kitchen; 
     this.roommateDetail.diet = this.roommateDetailForm.value.diet; 
     this.roommateDetail.smoking = this.roommateDetailForm.value.smoking; 
     this.roommateDetail.animals = this.roommateDetailForm.value.animals; 
+    this.roommateDetail.playInstrument = this.roommateDetailForm.value.playInstrument; 
     this.roommateDetail.cleaning = this.roommateDetailForm.value.cleaning; 
     this.settingsService.setRoommateDetail(this.roommateDetail)
     .subscribe(

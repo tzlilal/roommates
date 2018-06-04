@@ -1,7 +1,9 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-var schema = new Schema({
+const User = require('./user');
+
+const schema = new Schema({
     sex: {type: String, required: true},
     age: {type: String, required: true},
     martialStatus: {type: String, required: true}, 
@@ -15,7 +17,8 @@ var schema = new Schema({
     smoking: {type: String, required: true}, 
     animals: {type: Object, required: true}, 
     cleaning: {type: String, required: true},
-    additionalInfo: {type: String, required: true}
+    additionalInfo: {type: String}, 
+    user: {type: Schema.Types.ObjectId, ref: 'User'}
 });
 
 module.exports = mongoose.model('UserDetail', schema);

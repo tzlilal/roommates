@@ -65,6 +65,9 @@ router.post('/signin', function(req, res, next){
 router.get('/profile', function (req, res, next) {
     let decoded = jwt.decode(req.query.token);
     User.findById(decoded.user._id, function (err, user) {
+        // RoommateDetail.findById(user.roommateDetail, (err, result) => {
+        //     console.log(result); 
+        // });
         if (err) {
             return res.status(500).json({
                 title: 'An error occurred',
@@ -202,7 +205,8 @@ router.post('/userDetail', function (req, res, next) {
             smoking: req.body.smoking, 
             animals: req.body.animals, 
             cleaning: req.body.cleaning, 
-            additionalInfo: req.body.additionalInfo
+            additionalInfo: req.body.additionalInfo, 
+            user: user._id
         }); 
         userDetail.save(function(err, result) {
             if(err){
@@ -233,15 +237,16 @@ router.post('/roommateDetail', function (req, res, next) {
         let roommateDetail = new RoommateDetail({
             minAge: req.body.minAge, 
             maxAge: req.body.maxAge,
-            female: req.body.female, 
-            male: req.body.male, 
+            gender: req.body.gender, 
+            occupation: req.body.occupation,
             religion: req.body.religion, 
-            kosher: req.body.kosher,
             kitchen: req.body.kitchen, 
             diet: req.body.diet, 
             smoking: req.body.smoking, 
-            animals: req.body.animals, 
-            cleaning: req.body.cleaning, 
+            animals: req.body.animals,
+            playInstrument: req.body.playInstrument, 
+            cleaning: req.body.cleaning,
+            user: user._id
         }); 
         roommateDetail.save(function(err, result) {
             if(err){
@@ -258,6 +263,33 @@ router.post('/roommateDetail', function (req, res, next) {
             })
         });
     })   
+});
+
+router.post('/searchUser', function (req, res, next) {     
+    // console.log(req.body);
+    UserDetail.
+    find({sex: req.body.sex,
+        age: req.body.age,
+        martialStatus: req.body.martialStatus ,
+        hasChildren: req.body.hasChildren,
+        occupation: req.body.occupation,
+        sexualOrient: req.body.sexualOrient,
+        religion: req.body.religion, 
+        kosher: req.body.kosher,
+        kitchen: req.body.kitchen, 
+        diet: req.body.diet, 
+        smoking: req.body.smoking, 
+        // animals: req.body.animals, 
+        cleaning: req.body.cleaning
+    }).
+    populate('user').
+    exec(function (err, result) {
+        if (err) return handleError(err);
+        res.status(201).json({
+            message: 'Users search results',
+            obj: result
+        });
+    });
 });
 
 router.post('/image', function(req, res, next) {
