@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { Observable } from "rxjs";
 
 @Injectable()
 export class FormsService {
@@ -8,7 +10,7 @@ export class FormsService {
   floor = [];
   floor_counter = 1;
 
-  constructor() {
+  constructor(private http: Http) {
     while(this.ages_counter <= 99) 
       this.ages.push(this.ages_counter++);
     this.floor.push("קרקע");
@@ -25,5 +27,15 @@ export class FormsService {
 
   get floors() {
     return this.floor; 
+  }
+
+  getRegions() { 
+    const url = 'https://data.gov.il/api/action/datastore_search?resource_id=379e2eed-bc1a-444c-a97d-29119d2ea7fc'; 
+    return this.http
+      .get(url)
+      .map((response: Response) => {
+         return response.json();
+      })
+      .catch((error: Response) => Observable.throw(error.json()));
   }
 }

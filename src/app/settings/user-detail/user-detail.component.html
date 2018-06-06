@@ -1,27 +1,38 @@
 <form [formGroup]="userDetailForm" (ngSubmit)="onSubmit()">
   <div class="form-group row">
-      <label for="sex">מין</label>
+      <label>מין</label>
       <div class="col-sm-10">
-        <select id="sex" class="form-control" formControlName="sex">
+        <select class="form-control" formControlName="sex">
           <option>זכר</option>
           <option>נקבה</option>
         </select>
       </div>
     </div>
     <div class="form-group row">
-      <label for="age">גיל</label>
+      <label>גיל</label>
       <div class="col-sm-10">
-          <select id="age" class="form-control" formControlName="age">
+          <select class="form-control" formControlName="age">
             <option></option>
             <option *ngFor="let age of user_age">{{ age }}</option>
           </select>
       </div>
     </div>
     <div class="form-group row">
-      <label for="martialStatus">מצב משפחתי</label>
+      <label>בחר אזורי התגוררות</label>
       <div class="col-sm-10">
-        <select id="martialStatus" class="form-control" formControlName="martialStatus"> 
-          <option selected>רווק</option>
+        <span *ngIf="regions">
+          <select class="form-control selectpicker" formControlName="regions" multiple>
+              <option></option>
+              <option *ngFor="let region of regions">{{ region }}</option>
+            </select>
+        </span>
+      </div>
+    </div> 
+    <div class="form-group row">
+      <label>מצב משפחתי</label>
+      <div class="col-sm-10">
+        <select class="form-control" formControlName="martialStatus"> 
+          <option>רווק</option>
           <option>בזוגיות</option>
           <option>מאורס</option>
           <option>נשוי</option>
@@ -30,20 +41,20 @@
       </div>
     </div>
     <div class="form-group row">
-      <label for="hasChildren">ילדים</label>
+      <label>ילדים</label>
       <div class="col-sm-10">
-        <select id="hasChildren" class="form-control" formControlName="hasChildren">
-          <option selected>יש ילדים</option>
+        <select class="form-control" formControlName="hasChildren">
+          <option>יש ילדים</option>
           <option>אין ילדים</option>
           <option>לא רלוונטי</option>
         </select>
       </div>
     </div>
     <div class="form-group row">
-      <label for="occupation">עיסוק</label>
+      <label>עיסוק</label>
       <div class="col-sm-10">
-        <select id="occupation" class="form-control" formControlName="occupation">
-          <option selected>עובד במשרה מלאה</option>
+        <select class="form-control" formControlName="occupation">
+          <option>עובד במשרה מלאה</option>
           <option>עובד במשרה חלקית</option>
           <option>סטודנט</option>
           <option>חייל</option>
@@ -53,19 +64,10 @@
       </div>
     </div>
     <div class="form-group row">
-      <label for="sexualOrient">נטייה מינית</label>
+      <label>דת</label>
       <div class="col-sm-10">
-        <select id="sexualOrient" class="form-control" formControlName="sexualOrient">
-          <option selected>סטרייט</option>
-          <option>גיי</option>
-        </select>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="religion">דת</label>
-      <div class="col-sm-10">
-        <select id="religion" class="form-control" formControlName="religion">
-          <option selected>חילוני</option>
+        <select class="form-control" formControlName="religion">
+          <option>חילוני</option>
           <option>מסורתי ששומר שבת</option>
           <option>דתי</option>
           <option>אתאיסט</option>
@@ -74,73 +76,78 @@
       </div>
     </div>
     <div class="form-group row">
-      <label for="kosher">כשרות</label>
+      <label>כשרות</label>
       <div class="col-sm-10">
-        <select id="kosher" class="form-control" formControlName="kosher">
-          <option selected>שומר כשרות</option>
+        <select class="form-control" formControlName="kosher">
+          <option>שומר כשרות</option>
           <option>לא שומר כשרות</option>
           <option>לא רלוונטי</option>
         </select>
       </div>
     </div>
     <div class="form-group row">
-      <label for="kitchen">מטבח</label>
+      <label>מטבח</label>
       <div class="col-sm-10">
-        <select id="kitchen" class="form-control" formControlName="kitchen">
-          <option selected>כשר</option>
+        <select class="form-control" formControlName="kitchen">
+          <option>כשר</option>
           <option>לא כשר</option>
           <option>לא רלוונטי</option>
         </select>
       </div>
     </div>
     <div class="form-group row">
-      <label for="diet">תזונה</label>
+      <label>תזונה</label>
       <div class="col-sm-10">
-        <select id="diet" class="form-control" formControlName="diet">
-          <option selected>רגילה</option>
-          <option selected>צמחונית</option>
+        <select class="form-control" formControlName="diet">
+          <option>רגילה</option>
+          <option>צמחונית</option>
           <option>טבעונית</option>
           <option>לא רלוונטי</option>
         </select>
       </div>
     </div>
     <div class="form-group row">
-      <label for="smoking">עישון</label>
+      <label>עישון</label>
       <div class="col-sm-10">
-        <select id="smoking" class="form-control" formControlName="smoking">
-          <option selected>מעשן</option>
+        <select class="form-control" formControlName="smoking">
+          <option>מעשן</option>
           <option>לא מעשן</option>
           <option>לא רלוונטי</option>
         </select>
       </div>
     </div>
     <div class="form-group row">
-      <label for="animals">מחזיק בע"ח</label>
+      <label>מחזיק בע"ח</label>
       <div class="col-sm-10">
         <span *ngFor="let animal of animals.controls">
-          <input type="checkbox" id="animals"  (change)="change(animal.value)">
+          <input type="checkbox" (change)="change(animal.value)">
           <label>{{ animal.value }}</label>
         </span>
-
+      </div>
+      <div class="form-group row">
+        <label>כלי נגינה</label>
+        <div class="col-sm-10">
+          <select class="form-control" formControlName="playInstrument">
+            <option>מנגן בכלי נגינה</option>
+            <option>לא מנגן בכלי נגינה</option>
+          </select>
+        </div>
       </div>
     </div>
     <div class="form-group row">
-      <label for="cleaning">נקיון</label>
+      <label>נקיון</label>
       <div class="col-sm-10">
-        <select id="cleaning" class="form-control" formControlName="cleaning">
-          <option selected>נקי</option>
+        <select class="form-control" formControlName="cleaning">
+          <option>נקי</option>
           <option>ממוצע</option>
           <option>לא נקי</option>
           <option>לא רלוונטי</option>
         </select>
       </div>
-    </div>
+    </div>  
     <div class="form-group">
-      <label for="additionalInfo">מידע נוסף</label>
-      <textarea class="form-control" id="additionalInfo" rows="3" formControlName="additionalInfo"></textarea>
+      <label>מידע נוסף</label>
+      <textarea class="form-control" rows="3" formControlName="additionalInfo"></textarea>
     </div>
-    <button
-            class="btn btn-primary"
-            type="submit">שמור</button>
-            <!-- disabling the button if one of the fields (or all of them) is not valid -->
+    <button class="btn btn-primary" type="submit">שמור</button>
 </form> 

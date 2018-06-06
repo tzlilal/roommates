@@ -1,120 +1,108 @@
 <form [formGroup]="roommateDetailForm" (ngSubmit)="onSubmit()">
     <div class="form-group row">
-      <label for="roommate-age">טווח גיל</label>
+      <label>טווח גיל</label>
       <div class="col-sm-10">
           <div class="col-sm-5">
-            <select id="age" class="form-control" formControlName="minAge">
+            <select class="form-control" formControlName="minAge">
                 <option *ngFor="let age of rommate_age">{{ age }}</option>
             </select>
             עד
           </div>
           <div class="col-sm-5">
-            <select id="age" class="form-control" formControlName="maxAge">
+            <select class="form-control" formControlName="maxAge">
                 <option *ngFor="let age of rommate_age">{{ age }}</option>
             </select>
           </div>
       </div>
     </div>
     <div class="form-group row">
-      <label for="roommate-female">מין</label>
+      <label>מין</label>
       <div class="col-sm-10">
-        <select id="roommate-female" class="form-control" formControlName="gender">
-          <option selected>זכר</option>
+        <select class="form-control" formControlName="gender">
+          <option>זכר</option>
           <option>נקבה</option>
           <option>אין העדפה</option>
         </select>
       </div>
     </div>
     <div class="form-group row">
-      <label for="occupation">עיסוק</label>
+      <label>עיסוק</label>
       <div class="col-sm-10">
-        <select id="occupation" class="form-control" formControlName="occupation">
-          <option selected>עובד במשרה מלאה</option>
+        <select class="form-control" formControlName="occupation">
+          <option>עובד במשרה מלאה</option>
           <option>עובד במשרה חלקית</option>
           <option>סטודנט</option>
           <option>חייל</option>
           <option>ללא עיסוק</option>
-          <option>אין העדפה</option>
         </select>
       </div>
     </div>
     <div class="form-group row">
-      <label for="roommate-religion">דת</label>
+      <label>דת</label>
       <div class="col-sm-10">
-        <select id="roommate-religion" class="form-control" formControlName="religion">
-            <option selected>חילוני</option>
+        <select class="form-control" formControlName="religion">
+            <option>חילוני</option>
             <option>מסורתי ששומר שבת</option>
             <option>דתי</option>
             <option>אתאיסט</option>
-            <option>אין העדפה</option>
         </select>
       </div>
     </div>
     <div class="form-group row">
-      <label for="roommate-kitchen">מטבח</label>
+      <label>מטבח</label>
       <div class="col-sm-10">
-        <select id="roommate-kitchen" class="form-control" formControlName="kitchen">
-            <option selected>כשר</option>
+        <select class="form-control" formControlName="kitchen">
+            <option>כשר</option>
             <option>לא כשר</option>
-            <option>אין העדפה</option>
         </select>
       </div>
     </div>
     <div class="form-group row">
-      <label for="roommate-diet">תזונה</label>
+      <label>תזונה</label>
       <div class="col-sm-10">
-        <select id="roommate-diet" class="form-control" formControlName="diet">
-            <option selected>רגילה</option>
-            <option selected>צמחונית</option>
+        <select class="form-control" formControlName="diet">
+            <option>רגילה</option>
+            <option>צמחונית</option>
             <option>טבעונית</option>
-            <option>אין העדפה</option>
         </select>
       </div>
     </div>
     <div class="form-group row">
-      <label for="roommate-smoking">עישון</label>
+      <label>עישון</label>
       <div class="col-sm-10">
-        <select id="roommate-smoking" class="form-control" formControlName="smoking">
-            <option selected>מעשן</option>
+        <select class="form-control" formControlName="smoking">
+            <option>מעשן</option>
             <option>לא מעשן</option>
-            <option>אין העדפה</option>
         </select>
       </div>
     </div>
     <div class="form-group row">
-        <label for="roommate-animals">בעלי חיים</label>
+        <label>בעלי חיים</label>
         <div class="col-sm-10">
-          <select id="roommate-animals" class="form-control" name="first" formControlName="animals">
-            <option selected>אוהב בעלי חיים</option>
+          <select class="form-control" formControlName="animals">
+            <option>אוהב בעלי חיים</option>
             <option>לא אוהב בעלי חיים</option>
-            <option>אין העדפה</option>
           </select>
         </div>
       </div>
       <div class="form-group row">
-        <label for="roommate-playInstrument">כלי נגינה</label>
+        <label>כלי נגינה</label>
         <div class="col-sm-10">
-          <select id="roommate-playInstrument" class="form-control" formControlName="playInstrument">
-            <option selected>מנגן בכלי נגינה</option>
+          <select class="form-control" formControlName="playInstrument">
+            <option>מנגן בכלי נגינה</option>
             <option>לא מנגן בכלי נגינה</option>
-            <option>אין העדפה</option>
           </select>
         </div>
-    </div>
+      </div>
       <div class="form-group row">
-          <label for="roommate-cleaning">נקיון</label>
+          <label>נקיון</label>
           <div class="col-sm-10">
-            <select id="roommate-cleaning" class="form-control" formControlName="cleaning">
-              <option selected>נקי</option>
+            <select class="form-control" formControlName="cleaning">
+              <option>נקי</option>
               <option>ממוצע</option>
               <option>לא נקי</option>
-              <option>אין העדפה</option>
             </select>
           </div>
       </div>
-    <button
-            class="btn btn-primary"
-            type="submit"
-            >שמור</button>
-            <!-- disabling the button if one of the fields (or all of them) is not valid -->
+    <button class="btn btn-primary" type="submit">שמור</button>
   </form>  

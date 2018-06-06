@@ -1,10 +1,10 @@
 export class UserDetail {
     constructor(public sex?: String,
         public age?: Number, 
+        public regions?: Array<String>, 
         public martialStatus?: String, 
         public hasChildren?: Boolean,
         public occupation?: String, 
-        public sexualOrient?: String, 
         public religion?: String, 
         public kosher?: String, 
         public kitchen?: String, 
@@ -15,6 +15,7 @@ export class UserDetail {
             "חתול": false, 
             "אחר": false
         },
+        public playInstrument?: String,
         public cleaning?: String,
         public additionalInfo?: String) {}
 }
