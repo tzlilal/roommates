@@ -2,13 +2,13 @@
     <div class="form-group row">
       <label>טווח גיל</label>
       <div class="col-sm-10">
-          <div class="col-sm-5">
+          <div class="row">
             <select class="form-control" formControlName="minAge">
                 <option *ngFor="let age of rommate_age">{{ age }}</option>
             </select>
             עד
           </div>
-          <div class="col-sm-5">
+          <div class="row">
             <select class="form-control" formControlName="maxAge">
                 <option *ngFor="let age of rommate_age">{{ age }}</option>
             </select>

@@ -78,12 +78,14 @@
         הצג מספר פלאפון בפרופיל
       </label>
     </div>
-    <button
-        class="btn btn-primary"
-        type="submit"
-        
-        >שמור
-        <!-- [disabled]="!accountForm.valid" -->
+    <div>
+      <button (click)="filePicker.click()">בחר תמונה</button>
+      <input type="file" #filePicker (change)="onImagePicked($event)">
+    </div>
+    <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && accountForm.get('image').valid">
+      <img [src]="imagePreview">
+    </div>
+    <button class="btn btn-primary" type="submit">שמור
     </button>
 </form>
 <div class="col-md-8 col-md-offset-2">
@@ -92,10 +94,4 @@
 <div class="col-md-8 col-md-offset-2">
   <button class="btn btn-danger" (click)="onDeleteAccount()">מחק חשבון</button>
 </div>
-<image-upload 
-  (uploadFinished)="onUploadFinished($event)"
-  [url]="'http://localhost:3000/api/image'"
-  [uploadedFiles]="['http://localhost:3000/api/image']"
-  >
-</image-upload>
 

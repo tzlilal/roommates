@@ -8,14 +8,17 @@ export class SettingsService {
 
   constructor(private http: Http) { }
 
-  changeDetailAccount(user) {
+  changeDetailAccount(user, image: File) {
     const body = JSON.stringify(user); 
+    const postData = new FormData(); 
+    postData.append("user", body); 
+    postData.append("image", image); 
     const token = localStorage.getItem("token")
     ? "?token=" + localStorage.getItem("token")
     : "";
-    const headers = new Headers({ "Content-Type": "application/json" });
+    // const headers = new Headers({ "Content-Type": "application/json" });
     return this.http
-      .post("http://localhost:3000/api/account" + token, body, { headers: headers })
+      .post("http://localhost:3000/api/account" + token, postData)
       .map((response: Response) => console.log(response.json))
       .catch((error: Response) => Observable.throw(error.json()));
   }

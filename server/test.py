@@ -13,15 +13,21 @@ def read_in():
 def main():
     # get our data as an array from read_in()
     data_array = read_in()
+    user_id = data_array.pop(); # dict of the current user id 
 
     # convert list of Dictionaries to Pandas Dataframe
     df = pd.DataFrame.from_records(data_array)
+    # get df of user
+    user_df = df[df.user == user_id["_id"]]
+
+    df_without_user = df[df.user != user_id["_id"]]
 
     # removing irelevant columns
-    x = df.drop(columns=['_id', 'user', '__v'])
+    x = df_without_user.drop(columns=['_id', 'user', '__v'])
+    user_df_dropped = user_df.drop(columns=['_id', 'user', '__v'])
+    t = user_df_dropped.values.tolist()[0]
 
     nbrs = NearestNeighbors().fit(x)
-    t = [1, 64, 1, 1, 128, 1, 128, 256]
     print(nbrs.kneighbors([t]))
 
 # Start process

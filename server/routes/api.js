@@ -3,14 +3,36 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const PythonShell = require('python-shell');
+const multer = require('multer'); // for extracting files 
 
 const User = require('../../models/user');
 const UserDetail = require('../../models/user-detail'); 
 const RoommateDetail = require('../../models/roommate-detail'); 
-const EncodedLables = require('../../models/encodedLables');
 const RoommateDetailEncoded = require('../../models/roommate-detail-encoded'); 
 
 const myPythonScriptPath = '/server/test.py';
+
+const MIME_TYPE_MAP = {
+    "image/png": "png",
+    "image/jpeg": "jpg",
+    "image/jpg": "jpg"
+};
+
+const storage = multer.diskStorage({  // configure how multer stores things 
+    destination: (req, file, cb) => { // executes whenever multer tries to save a file 
+      const isValid = MIME_TYPE_MAP[file.mimetype];
+      let error = new Error("Invalid mime type");
+      if (isValid) {
+        error = null;
+      }
+      cb(error, "server/images");
+    },
+    filename: (req, file, cb) => {
+      const name = file.originalname.toLowerCase().split(" ").join("-");
+      const ext = MIME_TYPE_MAP[file.mimetype];
+      cb(null, name + "-" + Date.now() + "." + ext);
+    }
+});
 
 router.post('/', (req, res, next) => {
   let user = new User({
@@ -55,7 +77,7 @@ router.post('/signin', function(req, res, next){
               error: {message: 'Invalid login credentials'}
           });
       }
-      let token = jwt.sign({user: user}, config.secret, {expiresIn: 7200}); // creates a new token and signs it
+      let token = jwt.sign({user: user}, 'mysecret', {expiresIn: 7200}); // creates a new token and signs it
           //  expiresIn -> how long the token will be vaild, 2 hr
       res.status(200).json({ // sends the token to the user 
           message: 'Successfully logged in',
@@ -97,7 +119,7 @@ router.get('/search', function (req, res, next) {
         }); 
 });
 
-router.post('/account', function (req, res, next) {
+router.post('/account', multer({ storage: storage }).single("image"), function (req, res, next) {
     let decoded = jwt.decode(req.query.token);
     User.findById(decoded.user._id, function (err, user) {
         if (err) {
@@ -116,6 +138,10 @@ router.post('/account', function (req, res, next) {
             user.email = req.body.email; 
         if('phoneNumber' in req.body)
             user.phoneNumber = req.body.phoneNumber; 
+        if('filename' in req.file) {
+            const url = req.protocol + '://' + req.get("host"); 
+            user.imagePath = url + "/images" + req.file.filename; 
+        }
         user.save(function(err, result) {
             if(err){
               return res.status(500).json({
@@ -125,7 +151,10 @@ router.post('/account', function (req, res, next) {
             }
             res.status(201).json({
               message: 'User updated',
-              obj: result
+              user: {
+                  ...result,
+                  id: result._id
+              }
             });
         }); 
     })   
@@ -148,7 +177,6 @@ router.post('/userDetail', function (req, res, next) {
             hasChildren: req.body.hasChildren, 
             occupation: req.body.occupation,
             religion: req.body.religion, 
-            kosher: req.body.kosher,
             kitchen: req.body.kitchen, 
             diet: req.body.diet, 
             smoking: req.body.smoking, 
@@ -156,7 +184,8 @@ router.post('/userDetail', function (req, res, next) {
             playInstrument: req.body.playInstrument, 
             cleaning: req.body.cleaning, 
             additionalInfo: req.body.additionalInfo, 
-            user: user._id
+            user: user._id, 
+            roommateDetailEncoded: null
         }); 
         userDetail.save(function(err, result) {
             if(err){
@@ -177,7 +206,7 @@ router.post('/userDetail', function (req, res, next) {
 
 router.post('/roommateDetail', function (req, res, next) {
     let decoded = jwt.decode(req.query.token);
-    User.findById(decoded.user._id, function (err, user) {
+    User.findById(decoded.user._id).populate('userDetail').exec(function (err, user) {
         if (err) {
             return res.status(500).json({
                 title: 'An error occurred',
@@ -211,6 +240,9 @@ router.post('/roommateDetail', function (req, res, next) {
             user: user._id
         });
         roommateDetailEncoded.save(); 
+        user.userDetail.roommateDetailEncoded = roommateDetailEncoded._id; 
+        user.roommateDetailEncoded = roommateDetailEncoded._id; 
+        user.userDetail.save();
         roommateDetail.save(function(err, result) {
             if(err){
               return res.status(500).json({
@@ -228,32 +260,87 @@ router.post('/roommateDetail', function (req, res, next) {
     })   
 });
 
-router.get('/matches', function(req, res, next) {
-    RoommateDetailEncoded.find().then((doc) => {
-        // Use python shell
-        var pyshell = new PythonShell(myPythonScriptPath);
+// router.get('/matches', function(req, res, next) {
+//     RoommateDetailEncoded.find().then((doc) => {
+//         // Use python shell
+//         var pyshell = new PythonShell(myPythonScriptPath);
 
-        pyshell.send(JSON.stringify(doc));
+//         pyshell.send(JSON.stringify(doc));
 
-        pyshell.on('message', function (message) {
-            // received a message sent from the Python script (a simple "print" statement)
-            console.log(message);
-        });
+//         pyshell.on('message', function (message) {
+//             // received a message sent from the Python script (a simple "print" statement)
+//             console.log(message);
+//         });
 
-        // end the input stream and allow the process to exit
-        pyshell.end(function (err) {
-            if (err){
-                throw err;
-            };
+//         // end the input stream and allow the process to exit
+//         pyshell.end(function (err) {
+//             if (err){
+//                 throw err;
+//             };
 
-            console.log('finished');
-        });
+//             console.log('finished');
+//         });
 
-        res.status(201).json({
-            message: 'encoded data', 
-            result: doc
-        });
+//         res.status(201).json({
+//             message: 'encoded data', 
+//             result: doc
+//         });
 
+//     });
+// });
+
+function pythonScript(id, resultArr) { 
+    resultArr.push({_id: id}); 
+    var pyshell = new PythonShell(myPythonScriptPath);
+
+    pyshell.send(JSON.stringify(resultArr));
+
+    pyshell.on('message', function (message) {
+        // received a message sent from the Python script (a simple "print" statement)
+        console.log(message);
+    });
+
+    // end the input stream and allow the process to exit
+    pyshell.end(function (err) {
+        if (err){
+            throw err;
+        };
+
+        console.log('finished');
+    });
+}
+
+router.get('/matches2', function(req, res) {
+    const id = "5b1c0d0271cca3438436b89c"; 
+    User.findById(id).populate('roommateDetail').populate('userDetail').exec(function(err, result) {
+        let onlyMaleOrFemale = true; 
+        const minAge = result.roommateDetail.minAge - 1;
+        const maxAge = result.roommateDetail.maxAge + 1;
+        const gender = result.roommateDetail.gender;
+        if (gender === 'אין העדפה')
+            onlyMaleOrFemale = false; 
+        const regions = result.userDetail.regions; 
+        if (onlyMaleOrFemale) {
+            UserDetail.find({age: { $gt: minAge, $lt: maxAge}, regions: { $in: regions }, sex: gender}).populate('roommateDetailEncoded').exec(function(err, result) {
+                console.log(JSON.stringify(result, undefined, 2));
+                let userEncodedArr = []; 
+                result.forEach(function(val) {
+                    userEncodedArr.push(val.roommateDetailEncoded); 
+                });
+                pythonScript(id, userEncodedArr);
+            });
+        } else { 
+            UserDetail.find({age: { $gt: minAge, $lt: maxAge}, regions: { $in: regions }}).then((doc) => {
+                console.log(doc); 
+            });
+        }
+
+        // User.find().populate({
+        //     path: 'userDetail', 
+        //     match: {age: { $gt: minAge, $lt: maxAge}, regions: { $in: regions }, sex: gender}
+        // }).populate('roommateDetailEncoded').exec(function(err, result) {
+        //             console.log(result); 
+        //     });
     });
 });
 

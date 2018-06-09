@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { User } from '../../auth/user.model';
 import { AuthService } from '../../auth/auth.service';
 import { SettingsService } from './../settings.service';
+import { mimeType } from './mime-type.validator'
 
 @Component({
   selector: 'app-account',
@@ -14,6 +15,8 @@ import { SettingsService } from './../settings.service';
 export class AccountComponent implements OnInit {
   accountForm: FormGroup;
   tempUser = {}; 
+  imagePreview: string; 
+
   constructor(public authService: AuthService, private settingsService: SettingsService) { }
 
   ngOnInit() { 
@@ -28,7 +31,8 @@ export class AccountComponent implements OnInit {
       phoneNumber: new FormControl(null, [
         Validators.required,
         Validators.pattern("/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im")
-      ])
+      ]), 
+      image: new FormControl(null, { validators: [Validators.required], asyncValidators: [mimeType]})
     });
   }
 
@@ -41,14 +45,24 @@ export class AccountComponent implements OnInit {
   }
 
   onSubmit() { 
-    this.settingsService.changeDetailAccount(this.tempUser)
+    // if (this.accountForm.invalid)
+    //   return; 
+    this.settingsService.changeDetailAccount(this.tempUser, this.accountForm.value.image)
     .subscribe(
       data => console.log(data),
       error => console.error(error)
     );
   }
-  onUploadFinished(e) {
-    console.log(e.file); 
+
+  onImagePicked(event: Event) { 
+    const file = (event.target as HTMLInputElement).files[0]; 
+    this.accountForm.patchValue({image: file}); 
+    this.accountForm.get('image').updateValueAndValidity(); 
+    const reader = new FileReader(); 
+    reader.onload = () => {
+      this.imagePreview = reader.result; 
+    };
+    reader.readAsDataURL(file); 
   }
 
   onDeleteAccount() { }

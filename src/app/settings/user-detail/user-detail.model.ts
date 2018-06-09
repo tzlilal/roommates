@@ -6,7 +6,6 @@ export class UserDetail {
         public hasChildren?: Boolean,
         public occupation?: String, 
         public religion?: String, 
-        public kosher?: String, 
         public kitchen?: String, 
         public diet?: String,
         public smoking?: Boolean,

@@ -46,7 +46,7 @@ export class RoommateDetailComponent implements OnInit {
     this.roommateDetail.smoking = this.roommateDetailForm.value.smoking; 
     this.roommateDetail.animals = this.roommateDetailForm.value.animals; 
     this.roommateDetail.playInstrument = this.roommateDetailForm.value.playInstrument; 
-    this.roommateDetail.cleaning = this.roommateDetailForm.value.cleaning; 
+    this.roommateDetail.cleaning = this.roommateDetailForm.value.cleaning;  
     this.settingsService.setRoommateDetail(this.roommateDetail)
     .subscribe(
       data => console.log(data),

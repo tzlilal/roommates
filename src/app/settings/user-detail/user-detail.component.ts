@@ -38,7 +38,6 @@ export class UserDetailComponent implements OnInit {
       hasChildren: new FormControl(""), 
       occupation: new FormControl(""), 
       religion: new FormControl(""),
-      kosher: new FormControl(""),
       kitchen: new FormControl(""),
       diet: new FormControl(""), 
       smoking: new FormControl(""), 
@@ -69,7 +68,6 @@ export class UserDetailComponent implements OnInit {
     this.userDetail.hasChildren = this.userDetailForm.value.hasChildren; 
     this.userDetail.occupation = this.userDetailForm.value.occupation; 
     this.userDetail.religion = this.userDetailForm.value.religion; 
-    this.userDetail.kosher = this.userDetailForm.value.kosher; 
     this.userDetail.kitchen = this.userDetailForm.value.kitchen; 
     this.userDetail.diet = this.userDetailForm.value.diet; 
     this.userDetail.smoking = this.userDetailForm.value.smoking; 
