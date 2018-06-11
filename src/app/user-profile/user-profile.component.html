@@ -1,0 +1,54 @@
+<div class="container">
+  <!-- Start Page Content -->
+  <div class="row">
+      <!-- Column -->
+      <div class="col-lg-12">
+        <div class="left-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-two">
+                        <header>
+                            <div class="avatar">
+                                <img src="https://randomuser.me/api/portraits/women/21.jpg" />
+                            </div>
+                        </header>
+  
+                        <h3>{{ user?.firstName}} {{ user?.lastName}} {{ user?.userDetail.sex }}, {{ user?.userDetail.age }}</h3>
+                        <div class="desc">
+                            {{ user?.userDetail.additionalInfo }}
+                        </div>
+                        <div class="contacts">
+                          <span *ngIf="user?.phoneNumber">
+                              <a><i class="fa fas fa-phone" (click)="onPhoneClick()"></i>
+                              <span *ngIf="showPhoneNumber"> {{ user?.phoneNumber }} </span></a>
+                          </span>
+                            <a href=""><i class="fa fas fa-star"></i></a>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="row"> 
+                          <div class="region-desc">
+                              <i class="fas fa-building"></i> איזורי מגורים מועדפים: 
+                              <p><span *ngFor="let region of user?.userDetail.regions">{{ region + " " }}</span></p>
+                          </div>
+                        </div>
+                        
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-card">
+            <div class="card">
+                <div class="card-body">
+                  <h3>jsdkfjsdkfj</h3>
+                </div>
+              </div>
+          </div>
+
+      </div>
+
+  </div>
+</div>

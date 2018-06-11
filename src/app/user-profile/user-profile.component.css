@@ -1,0 +1,157 @@
+.card-body {
+    padding: 0;
+    height: 50vh; 
+    width: 30vh; 
+}
+
+.left-card { 
+    float: left; 
+}
+
+.right-card {
+    float: right;
+}
+
+.card {
+    background: #ffffff none repeat scroll 0 0;
+    margin: 15px 0;
+    padding: 20px;
+    border: 0 solid #e7e7e7;
+    border-radius: 5px;
+    box-shadow: 0 5px 20px 0 rgba(0,0,0,0.15);
+}
+
+.card-subtitle {
+    font-size: 12px;
+    margin: 10px 0;
+}
+
+.card-title {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.card-title h4 {
+    display: inline-block;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.card-title p {
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 12px;
+}
+
+.card-two {
+    position: relative;
+    margin: 0 !important;
+    border: 0;
+  }
+  .card-two header {
+    position: relative;
+    width: 100%;
+    height: 60px;
+  }
+  .card-two header .avatar {
+    position: absolute;
+    left: 50%;
+    top: 30px;
+    margin-left: -50px;
+    z-index: 5;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #ccc;
+    border: 3px solid #fff;
+  }
+  .card-two header .avatar img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: auto;
+  }
+  .card-two h3 {
+    position: relative;
+    margin: 80px 0 30px;
+    text-align: center;
+  }
+  .card-two h3::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    margin-left: -15px;
+    width: 30px;
+    height: 1px;
+    background: #000;
+  }
+  .card-two .desc {
+    padding: 0 1rem 2rem;
+    text-align: center;
+    line-height: 1.5;
+    color: #777;
+  }
+
+  .card-two .contacts {
+    width: 200px;
+    max-width: 100%;
+    margin: 0 auto 3.5rem;
+  }
+
+  .card-two .contacts a {
+    display: block;
+    width: 33.333333%;
+    float: left;
+    text-align: center;
+    color: #1976d2;
+  }
+  .card-two .contacts a:hover {
+    color: #333;
+  }
+  .card-two .contacts a:hover .fa::before {
+    color: #fff;
+  }
+  .card-two .contacts a:hover .fa::after {
+    top: 0;
+  }
+  .card-two .contacts a .fa {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    line-height: 39px;
+    overflow: hidden;
+    text-align: center;
+    border: 2px solid #1976d2;
+    border-radius: 50%;
+  }
+  .card-two .contacts a .fa:before {
+    position: relative;
+    z-index: 1;
+  }
+  .card-two .contacts a .fa::after {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: top 0.3s;
+    transition: top 0.3s;
+    background: #1976d2;
+  }
+  .card-two .contacts a:last-of-type .fa {
+    line-height: 36px;
+  }
+
+.region-desc {
+    padding: 20px 0;
+    text-align: center;
+    line-height: 1.5;
+    color: #777;
+}

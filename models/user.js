@@ -15,6 +15,7 @@ const schema = new Schema({
     apartment: {type: Schema.Types.ObjectId, ref: 'Apartment'}, 
     apartmentDetail: {type: Schema.Types.ObjectId, ref: 'ApartmentDetail'},
     roommateDetailEncoded: {type: Schema.Types.ObjectId, ref: 'RoommateDetailEncoded'},
+    users: [{type: Schema.Types.ObjectId}],
     imagePath: {type: String}
 });
 

@@ -13,6 +13,7 @@ import { RoommateDetailComponent } from './settings/roommate-detail/roommate-det
 import { SearchComponent } from './search/search.component';
 import { AuthGuard } from './auth/auth-guard.service';
 import { ApartmentDetailComponent } from './settings/apartment-detail/apartment-detail.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const APP_ROUTES: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -20,7 +21,9 @@ const APP_ROUTES: Routes = [
     { path: 'signup', component: SignupComponent }, 
     { path: 'signin', component: SigninComponent },
     { path: 'logout', component: LogoutComponent }, 
-    { path: 'search', canActivate: [AuthGuard], component: SearchComponent },
+    { path: 'users/:id', component: UserProfileComponent },
+    { path: 'users', canActivate: [AuthGuard], component: SearchComponent },
+    // { path: 'search', canActivate: [AuthGuard], component: SearchComponent }, 
     { path: 'settings', canActivate: [AuthGuard], component: SettingsComponent, children: [
         { path: 'account', component: AccountComponent},
         { path: 'info', component: UserDetailComponent},

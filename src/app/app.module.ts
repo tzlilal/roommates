@@ -26,6 +26,7 @@ import { AuthGuard } from './auth/auth-guard.service';
 import { ApartmentDetailComponent } from './settings/apartment-detail/apartment-detail.component';
 import { FormsService } from './settings/forms.service';
 import { SettingsService } from './settings/settings.service';
+import { UserProfileComponent } from './user-profile/user-profile.component';
  
 
 @NgModule({
@@ -44,7 +45,8 @@ import { SettingsService } from './settings/settings.service';
     ApartmentComponent,
     RoommateDetailComponent,
     SearchComponent,
-    ApartmentDetailComponent
+    ApartmentDetailComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

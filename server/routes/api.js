@@ -102,6 +102,25 @@ router.get('/profile', function (req, res, next) {
     })   
 });
 
+// user profile
+router.get('/users/:id', function(req, res) {
+    User.findById(req.params.id)
+        .populate('userDetail')
+        .populate('roommateDetail')
+        .exec((err, foundUser) => {
+            if (err) { 
+                return res.status(500).json({
+                    title: 'An error occurred',
+                    error: err
+                });
+            }
+            res.status(200).json({
+                message: 'Success',
+                obj: foundUser
+            });
+        });
+});
+
 router.get('/search', function (req, res, next) {
     User.find()
         .populate('user', 'firstName')
@@ -260,36 +279,7 @@ router.post('/roommateDetail', function (req, res, next) {
     })   
 });
 
-// router.get('/matches', function(req, res, next) {
-//     RoommateDetailEncoded.find().then((doc) => {
-//         // Use python shell
-//         var pyshell = new PythonShell(myPythonScriptPath);
-
-//         pyshell.send(JSON.stringify(doc));
-
-//         pyshell.on('message', function (message) {
-//             // received a message sent from the Python script (a simple "print" statement)
-//             console.log(message);
-//         });
-
-//         // end the input stream and allow the process to exit
-//         pyshell.end(function (err) {
-//             if (err){
-//                 throw err;
-//             };
-
-//             console.log('finished');
-//         });
-
-//         res.status(201).json({
-//             message: 'encoded data', 
-//             result: doc
-//         });
-
-//     });
-// });
-
-function pythonScript(id, resultArr) { 
+function pythonScript(id, resultArr, res) { 
     resultArr.push({_id: id}); 
     var pyshell = new PythonShell(myPythonScriptPath);
 
@@ -297,21 +287,36 @@ function pythonScript(id, resultArr) {
 
     pyshell.on('message', function (message) {
         // received a message sent from the Python script (a simple "print" statement)
-        console.log(message);
-    });
+        let result = JSON.parse(message); 
 
+        User.find({
+            '_id': { $in: result}
+        }).populate('userDetail').populate('roommateDetail').exec(function(err, result) {
+            if(err) {
+                return res.status(500).json({
+                  title: 'An error occured', 
+                  error: err
+                });
+            }
+            res.status(201).json({
+            message: 'User matches:',
+            obj: result
+            })
+        });
+    });
     // end the input stream and allow the process to exit
     pyshell.end(function (err) {
         if (err){
             throw err;
         };
 
-        console.log('finished');
+        // console.log('finished');
     });
 }
 
-router.get('/matches2', function(req, res) {
-    const id = "5b1c0d0271cca3438436b89c"; 
+router.get('/matches', function(req, res) {
+    let decoded = jwt.decode(req.query.token);
+    const id = decoded.user._id; 
     User.findById(id).populate('roommateDetail').populate('userDetail').exec(function(err, result) {
         let onlyMaleOrFemale = true; 
         const minAge = result.roommateDetail.minAge - 1;
@@ -322,30 +327,22 @@ router.get('/matches2', function(req, res) {
         const regions = result.userDetail.regions; 
         if (onlyMaleOrFemale) {
             UserDetail.find({age: { $gt: minAge, $lt: maxAge}, regions: { $in: regions }, sex: gender}).populate('roommateDetailEncoded').exec(function(err, result) {
-                console.log(JSON.stringify(result, undefined, 2));
+                // console.log(JSON.stringify(result, undefined, 2));
                 let userEncodedArr = []; 
                 result.forEach(function(val) {
                     userEncodedArr.push(val.roommateDetailEncoded); 
                 });
-                pythonScript(id, userEncodedArr);
+                pythonScript(id, userEncodedArr, res);
             });
         } else { 
             UserDetail.find({age: { $gt: minAge, $lt: maxAge}, regions: { $in: regions }}).then((doc) => {
                 console.log(doc); 
             });
         }
-
-        // User.find().populate({
-        //     path: 'userDetail', 
-        //     match: {age: { $gt: minAge, $lt: maxAge}, regions: { $in: regions }, sex: gender}
-        // }).populate('roommateDetailEncoded').exec(function(err, result) {
-        //             console.log(result); 
-        //     });
     });
 });
 
 router.post('/searchUser', function (req, res, next) {     
-    // console.log(req.body);
     UserDetail.
     find({sex: req.body.sex,
         age: req.body.age,
@@ -371,10 +368,6 @@ router.post('/searchUser', function (req, res, next) {
     });
 });
 
-router.post('/image', function(req, res, next) {
-    console.log(req.body); 
-    res.send("dsfdsf"); 
-}); 
 
 function translateLables(res) {
     let occupation, religion, kitchen, diet, smoking, animals, playInstrument, cleaning;
@@ -420,29 +413,5 @@ function translateLables(res) {
         cleaning: cleaning
     }; 
 };
-
-// RoommateDetail.find().then((doc) => {
-//     translateLables(doc); 
-// });
-
-// const encodedLables = new EncodedLables({
-//     occupation: {partTime: 32, fullTime: 128, student: 256, soldier: 512, unoccupied: 1024, noPref: -9999}, 
-//     religion: {religious: 16, traditional: 64, secular: 128, atheist: 512, noPref: -9999}, 
-//     kitchen: {kosher: 1, noKosher: 256, noPref: -9999}, 
-//     diet: {regular: 1, vegetarian: 64, vegan: 512, noPref: -9999}, 
-//     smoking: {smoke: 1, noSmoke: 256, noPref: -9999}, 
-//     animals: {proAnimals: 1, conAnimals: 256, noPref: -9999}, 
-//     playInstrument: {proPlay: 1, conPlay: 256, noPref: -9999}, 
-//     cleaning: {clean: 1, average: 64, notClean: 512, noPref: -9999}
-// });
-
-
-// encodedLables.save().then((doc) => {
-//     console.log(JSON.stringify(doc, undefined, 2)); 
-// }, (e) => {
-//     console.log('Unable to save doc', e); 
-// });
-
-
 
 module.exports = router;

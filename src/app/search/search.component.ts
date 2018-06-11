@@ -13,11 +13,16 @@ export class SearchComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.getUsers().subscribe(
+    // this.authService.getUsers().subscribe(
+    //   (users: User[]) => {
+    //     this.users = users;
+    //   }
+    // );
+
+    this.authService.getMatches().subscribe(
       (users: User[]) => {
-        this.users = users;
-      }
-    );
+        this.users = users; 
+      }); 
   }
 
 }
