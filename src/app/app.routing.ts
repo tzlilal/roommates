@@ -14,12 +14,14 @@ import { SearchComponent } from './search/search.component';
 import { AuthGuard } from './auth/auth-guard.service';
 import { ApartmentDetailComponent } from './settings/apartment-detail/apartment-detail.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { FavoriteComponent } from './favorite/favorite.component';
 
 const APP_ROUTES: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent }, 
     { path: 'signup', component: SignupComponent }, 
     { path: 'signin', component: SigninComponent },
+    { path: 'favorites', component: FavoriteComponent },
     { path: 'logout', component: LogoutComponent }, 
     { path: 'users/:id', component: UserProfileComponent },
     { path: 'users', canActivate: [AuthGuard], component: SearchComponent },
@@ -33,7 +35,7 @@ const APP_ROUTES: Routes = [
         { path: 'apartment', component: ApartmentComponent}
     ]},
     // redirect to home if the page doesnt exist
-    { path: '**', component: HomeComponent }  
+    // { path: '**', component: HomeComponent }  
 ];
 
 export const routing = RouterModule.forRoot(APP_ROUTES);

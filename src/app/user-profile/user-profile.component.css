@@ -1,7 +1,13 @@
 .card-body {
     padding: 0;
-    height: 50vh; 
+    /* height: 60vh;  */
     width: 30vh; 
+}
+
+.card-body-right {
+  padding: 0;
+  height: 60vh; 
+  width: 90vh; 
 }
 
 .left-card { 
@@ -19,6 +25,21 @@
     border: 0 solid #e7e7e7;
     border-radius: 5px;
     box-shadow: 0 5px 20px 0 rgba(0,0,0,0.15);
+}
+
+.card-block {
+  font-size: 1em;
+  position: relative;
+  margin: 0;
+  padding: 1em;
+  border: none;
+  border-top: 1px solid rgba(34, 36, 38, .1);
+  box-shadow: none;
+}
+
+.card-info {
+  color: #333; 
+  padding: 5px 0; 
 }
 
 .card-subtitle {
@@ -62,9 +83,9 @@
     z-index: 5;
     width: 100px;
     height: 100px;
-    border-radius: 50%;
+    /* border-radius: 50%; */
     overflow: hidden;
-    background: #ccc;
+    background:  #fff;
     border: 3px solid #fff;
   }
   .card-two header .avatar img {
@@ -110,6 +131,7 @@
     float: left;
     text-align: center;
     color: #1976d2;
+    margin: 0 15px; 
   }
   .card-two .contacts a:hover {
     color: #333;
@@ -149,9 +171,17 @@
     line-height: 36px;
   }
 
-.region-desc {
-    padding: 20px 0;
-    text-align: center;
+.pref-desc {
+    padding: 40px 15px;
+    text-align: right;
     line-height: 1.5;
     color: #777;
+}
+
+.region-item { 
+  padding-right: 2em; 
+}
+
+.glyphicon-star-empty, .glyphicon-star { 
+  font-size: 20px; 
 }

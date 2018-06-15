@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { User } from '../auth/user.model';
 
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -10,7 +11,9 @@ import { User } from '../auth/user.model';
 })
 export class SearchComponent implements OnInit {
   users: User[];
-  constructor(private authService: AuthService) { }
+
+  constructor(private authService: AuthService) { 
+  }
 
   ngOnInit() {
     // this.authService.getUsers().subscribe(
@@ -18,11 +21,17 @@ export class SearchComponent implements OnInit {
     //     this.users = users;
     //   }
     // );
-
+  
+    
     this.authService.getMatches().subscribe(
       (users: User[]) => {
         this.users = users; 
       }); 
+
+  }
+
+  onSubmit() {
+
   }
 
 }

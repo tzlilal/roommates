@@ -8,7 +8,7 @@ export class UserDetail {
         public religion?: String, 
         public kitchen?: String, 
         public diet?: String,
-        public smoking?: Boolean,
+        public smoking?: String,
         public animals: Object = {
             "כלב": false, 
             "חתול": false, 

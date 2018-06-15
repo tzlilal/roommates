@@ -9,7 +9,7 @@
                     <div class="card-two">
                         <header>
                             <div class="avatar">
-                                <img src="https://randomuser.me/api/portraits/women/21.jpg" />
+                                <img src="../../assets/user.svg" />
                             </div>
                         </header>
   
@@ -22,18 +22,20 @@
                               <a><i class="fa fas fa-phone" (click)="onPhoneClick()"></i>
                               <span *ngIf="showPhoneNumber"> {{ user?.phoneNumber }} </span></a>
                           </span>
-                            <a href=""><i class="fa fas fa-star"></i></a>
+                            <a><i class="fa glyphicon" [class.glyphicon-star]="isFavorite" 
+                                [class.glyphicon-star-empty]="!isFavorite" (click)="starFavorite()"></i></a>
                             <div class="clear"></div>
                         </div>
 
                         <div class="row"> 
-                          <div class="region-desc">
-                              <i class="fas fa-building"></i> איזורי מגורים מועדפים: 
-                              <p><span *ngFor="let region of user?.userDetail.regions">{{ region + " " }}</span></p>
-                          </div>
-                        </div>
-                        
+                            <div class="pref-desc">
+                                <i class="fas fa-building"></i> איזורי מגורים מועדפים: 
+                                <p><span class="region-item" *ngFor="let region of user?.userDetail.regions">{{ region }}<br></span></p>
 
+                                <i class="far fa-user"></i> {{ LookingFor }} {{ RoommateGender }} בין הגילאים
+                                {{ user?.roommateDetail.minAge + '-' + user?.roommateDetail.maxAge }}
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -42,12 +44,50 @@
 
         <div class="right-card">
             <div class="card">
-                <div class="card-body">
-                  <h3>jsdkfjsdkfj</h3>
-                </div>
-              </div>
-          </div>
+                <div class="row grid">
+                        <div class="card-body-right">
+                            <div class="box">	
+                                <div class="card-info">
+                                     <h4>פרטים אישיים:</h4>
+                                </div>						
+                                    <div class="card-block">
+                                        <p>
+                                            <i class="fas fa-check"></i> {{ martialStatus }}
+                                            <i class="fas fa-check"></i> {{ occupation }}
+                                            <i class="fas fa-check"></i> {{ user?.userDetail.hasChildren }}
+                                        </p>
+                                        <p> 
+                                            <strong>דת: </strong> {{ religion }} 
+                                            <strong>מטבח: </strong>  {{ user?.userDetail.kitchen }} 
+                                        </p>
+                                        <p> 
+                                            <strong>תזונה: </strong>  {{ user?.userDetail.diet }} 
+                                            <strong>עישון: </strong>  {{ smoking }} 
+                                        </p>
+                                        <p>  {{ animals }} </p>
+                                        <p> {{ playInstrument }} <strong>ניקיון: </strong>  {{ user?.userDetail.cleaning }} </p>
+                                    </div>
 
+                                    <div class="card-info">
+                                        <h4>{{ LookingFor }} {{ RoommateGender }}:</h4>
+                                    </div>						
+                                    <div class="card-block">
+                                        <p><i class="fas fa-check"></i> {{ roommateOccupation }} </p>
+                                        <p> 
+                                            <strong>דת: </strong> {{ religion }} 
+                                            <strong>מטבח: </strong>  {{ user?.roommateDetail.kitchen }} 
+                                        </p>
+                                        <p> 
+                                            <strong>תזונה: </strong>  {{ user?.roommateDetail.diet }} 
+                                            <strong>עישון: </strong>  {{ rommateSmoking }} 
+                                        </p>
+                                        <p>  {{ rommateAnimals }} </p>
+                                        <p> {{ roommatePlayInstrument }} <strong>ניקיון: </strong>  {{ user?.roommateDetail.cleaning }} </p>
+                                    </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
       </div>
 
   </div>

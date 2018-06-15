@@ -139,6 +139,7 @@ router.get('/search', function (req, res, next) {
 });
 
 router.post('/account', multer({ storage: storage }).single("image"), function (req, res, next) {
+    const userResult = JSON.parse(req.body.user); 
     let decoded = jwt.decode(req.query.token);
     User.findById(decoded.user._id, function (err, user) {
         if (err) {
@@ -147,19 +148,23 @@ router.post('/account', multer({ storage: storage }).single("image"), function (
                 error: err
             });
         }
-        if('firstName' in req.body)
-            user.firstName = req.body.firstName;
-        if('lastName' in req.body)
-            user.lastName = req.body.lastName; 
-        if('password' in req.body)
-            user.password = bcrypt.hashSync(req.body.password, 10);
-        if('email' in req.body)
-            user.email = req.body.email; 
-        if('phoneNumber' in req.body)
-            user.phoneNumber = req.body.phoneNumber; 
-        if('filename' in req.file) {
-            const url = req.protocol + '://' + req.get("host"); 
-            user.imagePath = url + "/images" + req.file.filename; 
+        if('firstName' in userResult)
+            user.firstName = userResult.firstName;
+        if('lastName' in userResult)
+            user.lastName = userResult.lastName; 
+        if('password' in userResult)
+            user.password = bcrypt.hashSync(userResult.password, 10);
+        if('email' in userResult)
+            user.email = userResult.email; 
+        if('phoneNumber' in userResult) { 
+            // console.log('userResultuserResultuserResult')
+            user.phoneNumber = userResult.phoneNumber; 
+        }
+        if(req.file) {
+                if('filename' in req.file) {
+                    const url = req.protocol + '://' + req.get("host"); 
+                    user.imagePath = url + "/images" + req.file.filename; 
+            }
         }
         user.save(function(err, result) {
             if(err){
@@ -364,6 +369,49 @@ router.post('/searchUser', function (req, res, next) {
         res.status(201).json({
             message: 'Users search results',
             obj: result
+        });
+    });
+});
+
+router.post('/favorites', function (req, res, next) {
+    var decoded = jwt.decode(req.query.token);
+    User.findById(decoded.user._id, function (err, user) {
+        if (err) {
+            return res.status(500).json({
+                title: 'An error occurred',
+                error: err
+            });
+        }
+        user.users.push(req.body._id);
+        user.save();
+        res.status(201).json({
+            message: 'Saved user'
+        });
+    });
+});
+
+router.get('/favorites', function (req, res, next) {
+    var decoded = jwt.decode(req.query.token);
+    User.findById(decoded.user._id, function (err, user) {
+        if (err) {
+            return res.status(500).json({
+                title: 'An error occurred',
+                error: err
+            });
+        }
+        User.find({
+            '_id': { $in: user.users}
+        }).exec(function(err, result) {
+            if(err) {
+                return res.status(500).json({
+                  title: 'An error occured', 
+                  error: err
+                });
+            }
+            res.status(201).json({
+            message: 'favorite users:',
+            obj: result
+            })
         });
     });
 });

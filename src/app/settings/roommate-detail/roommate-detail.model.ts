@@ -1,5 +1,6 @@
 export class RoommateDetail {
-    constructor(public minAge?: Number,
+    constructor(
+        public minAge?: Number,
         public maxAge?: Number, 
         public gender?: String, 
         public occupation?: String, 

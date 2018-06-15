@@ -47,6 +47,7 @@ export class AccountComponent implements OnInit {
   onSubmit() { 
     // if (this.accountForm.invalid)
     //   return; 
+    console.log(this.tempUser);
     this.settingsService.changeDetailAccount(this.tempUser, this.accountForm.value.image)
     .subscribe(
       data => console.log(data),

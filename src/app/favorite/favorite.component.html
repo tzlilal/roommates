@@ -1,0 +1,10 @@
+<div *ngFor="let user of users" [routerLink]="['#']" class="col-sm-4 pull-right">
+  <div class="gal-detail thumb">
+      <a [routerLink]="['/users', user._id]" class="image-popup" title="Screenshot-2">
+          <img src="../../assets/user.svg" height="100" width="100" class="thumb-img" alt="work-thumbnail">
+      </a>
+      <h4 class="text-center">{{ user.firstName }}</h4>
+      <div class="ga-border"></div>
+      <p class="text-muted text-center"><small>{{ user.lastName }}</small></p>
+  </div>
+</div>

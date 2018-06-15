@@ -1,93 +1,104 @@
 <form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
-    <div class="form-group row">
-        <label for="firstName">שם פרטי</label>
-        <div class="col-sm-10">
-          <input
-                  type="text"
-                  id="firstName"
-                  class="form-control"
-                  [value]="authService.user?.firstName"
-                  formControlName="firstName"
-                  (change)="change('firstName', $event)">
-                  <!-- send name of value and value  -->
-                  <div *ngIf="firstName.touched && firstName.invalid " class="alert alert-danger">
-                    <div *ngIf="firstName.errors.required">חובה למלא שם פרטי</div>
-                    <div *ngIf="firstName.errors.minlength">השם צריך להכיל לפחות שני תווים</div>
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+              <button (click)="filePicker.click()">בחר תמונה</button>
+              <input type="file" #filePicker (change)="onImagePicked($event)">
+              <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && accountForm.get('image').valid">
+                  <img [src]="imagePreview">
+              </div>
+          </div>
+        </div>
+
+          <div class="col-md-8">
+            <div class="card">
+              <div class="row">
+                <div class="col-md-6 pull-right">
+                  <div class="form-group">
+                      <label for="firstName">שם פרטי</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                [value]="authService.user?.firstName"
+                                formControlName="firstName"
+                                (change)="change('firstName', $event)"
+                        >
+                                <!-- send name of value and value  -->
+                                <div *ngIf="firstName.touched && firstName.invalid " class="alert alert-danger">
+                                  <div *ngIf="firstName.errors.required">חובה למלא שם פרטי</div>
+                                  <div *ngIf="firstName.errors.minlength">השם צריך להכיל לפחות שני תווים</div>
+                                </div>
                   </div>
-        </div>
+                </div>
+                <div class="col-md-6 pull-right">
+                  <div class="form-group">
+                      <label for="lastName">שם משפחה</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                [value]="authService.user?.lastName"
+                                formControlName="lastName"
+                                (change)="change('lastName', $event)">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6 pull-right">
+                      <div class="form-group">
+                          <label for="email">אימייל</label>
+                            <input
+                                    type="email"
+                                    class="form-control"
+                                    [value]="authService.user?.email"
+                                    formControlName="email"
+                                    (change)="change('email', $event)">
+                      </div>
+                    </div>
+                    <div class="col-md-6 pull-right">
+                      <div class="form-group">
+                          <label for="phoneNumber">מספר פלאפון</label>
+                            <input
+                                    type="number"
+                                    id="phoneNumber"
+                                    class="form-control"
+                                    [value]="authService.user?.phoneNumber"
+                                    formControlName="phoneNumber"
+                                    (change)="change('phoneNumber', $event)">
+                      </div>
+                    </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6 pull-right">
+                      <div class="form-group">
+                          <label for="password">שנה סיסמה</label>
+                            <input
+                                    type="password"
+                                    id="password"
+                                    class="form-control"
+                                    formControlName="password"
+                                    (change)="change('password', $event)">
+                      </div>
+                    </div>
+                    <div class="col-md-6 pull-right">
+                        <div class="form-group">
+                            <label for="verifyPassword">אמת סיסמה</label>
+                              <input
+                                      type="password"
+                                      id="verifyPassword"
+                                      class="form-control">
+                        </div>
+                    </div>
+              </div>
+
+            </div>
+          </div>
+      <button class="btn btn-primary" type="submit">שמור</button>
     </div>
-    <div class="form-group row">
-        <label for="lastName">שם משפחה</label>
-        <div class="col-sm-10">
-          <input
-                  type="text"
-                  id="lastName"
-                  class="form-control"
-                  [value]="authService.user?.lastName"
-                  formControlName="lastName"
-                  (change)="change('lastName', $event)">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="email">אימייל</label>
-        <div class="col-sm-10">
-          <input
-                  type="email"
-                  id="email"
-                  class="form-control"
-                  [value]="authService.user?.email"
-                  formControlName="email"
-                  (change)="change('email', $event)">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="password">שנה סיסמה</label>
-        <div class="col-sm-10">
-          <input
-                  type="password"
-                  id="password"
-                  class="form-control"
-                  formControlName="password"
-                  (change)="change('password', $event)">
-        </div>
-    </div>
-    <div class="form-group row">
-      <label for="verifyPassword">אמת סיסמה</label>
-      <div class="col-sm-10">
-        <input
-                type="password"
-                id="verifyPassword"
-                class="form-control">
-      </div>
   </div>
-    <div class="form-group row">
-      <label for="phoneNumber">מספר פלאפון</label>
-      <div class="col-sm-10">
-        <input
-                type="number"
-                id="phoneNumber"
-                class="form-control"
-                [value]="authService.user?.phoneNumber"
-                formControlName="phoneNumber"
-                (change)="change('phoneNumber', $event)">
-      </div>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-      <label class="form-check-label" for="defaultCheck1">
-        הצג מספר פלאפון בפרופיל
-      </label>
-    </div>
-    <div>
-      <button (click)="filePicker.click()">בחר תמונה</button>
-      <input type="file" #filePicker (change)="onImagePicked($event)">
-    </div>
-    <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && accountForm.get('image').valid">
-      <img [src]="imagePreview">
-    </div>
-    <button class="btn btn-primary" type="submit">שמור
-    </button>
 </form>
+
+
 <div class="col-md-8 col-md-offset-2">
     <button class="btn btn-danger" (click)="onDeactivate()">בטל פעילות חשבון</button>
   </div>

@@ -64,12 +64,13 @@ export class AuthService {
       .get("http://localhost:3000/api/profile" + token)
       .map((response: Response) => {
         const result = response.json();
+        // console.log(result); 
         let user = new User(
           result.result.email,
           result.result.password,
           result.result.firstName,
           result.result.lastName,
-          result.result.phoneNumber
+          result.result._id
         );
         this.currentUser = user;
         // debugger
@@ -86,11 +87,44 @@ export class AuthService {
         let transformedUsers: User[] = [];
         for (let user of users) {
           transformedUsers.push(
-            new User(user.email, user.password, user.firstName, user.lastName)
+            new User(user.email, user.password, user.firstName, user.lastName, user._id)
           );
         }
         this.users = transformedUsers;
         return transformedUsers;
+      })
+      .catch((error: Response) => Observable.throw(error.json()));
+  }
+
+  addToFavorites(id) {
+    const body = JSON.stringify(id);
+    const token = localStorage.getItem("token")
+    ? "?token=" + localStorage.getItem("token")
+    : "";
+    const headers = new Headers({ "Content-Type": "application/json" });
+    return this.http
+      .post("http://localhost:3000/api/favorites" + token, body, { headers: headers })
+      .map((response: Response) => {
+        return response.json();
+      })
+      .catch((error: Response) => Observable.throw(error.json()));
+  }
+
+  getFavorites() { 
+    const token = localStorage.getItem("token")
+    ? "?token=" + localStorage.getItem("token")
+    : "";
+    return this.http
+      .get("http://localhost:3000/api/favorites" + token)
+      .map((response: Response) => {
+        const users = response.json().obj;
+        let transformedUsers: User[] = [];
+        for (let user of users) {
+          transformedUsers.push(
+            new User(user.email, user.password, user.firstName, user.lastName, user._id)
+          );
+        }
+        return transformedUsers; 
       })
       .catch((error: Response) => Observable.throw(error.json()));
   }
@@ -144,6 +178,7 @@ export class AuthService {
         roommateDetail.occupation, 
         roommateDetail.religion, 
         roommateDetail.kitchen, 
+        roommateDetail.diet, 
         roommateDetail.smoking, 
         roommateDetail.animals, 
         roommateDetail.playInstrument, 
@@ -157,9 +192,11 @@ export class AuthService {
         id,
         userResult.registryDate,
         userResult.isActive,
-        "54641212",
+        userResult.phoneNumber,
         transformedUserDetail,
         transformedRoommateDetail,
+        null,
+        userResult.imagePath
        );
     });
   }

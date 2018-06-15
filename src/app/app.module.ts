@@ -27,6 +27,7 @@ import { ApartmentDetailComponent } from './settings/apartment-detail/apartment-
 import { FormsService } from './settings/forms.service';
 import { SettingsService } from './settings/settings.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { FavoriteComponent } from './favorite/favorite.component';
  
 
 @NgModule({
@@ -46,7 +47,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     RoommateDetailComponent,
     SearchComponent,
     ApartmentDetailComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    FavoriteComponent
   ],
   imports: [
     BrowserModule,
