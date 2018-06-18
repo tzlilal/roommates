@@ -29,6 +29,8 @@ import { SettingsService } from './settings/settings.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { UserService } from './user.service';
+import { ErrorComponent } from './errors/error.component';
+import { ErrorService } from './errors/error.service';
  
 
 @NgModule({
@@ -49,7 +51,8 @@ import { UserService } from './user.service';
     SearchComponent,
     ApartmentDetailComponent,
     UserProfileComponent,
-    FavoriteComponent
+    FavoriteComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +68,8 @@ import { UserService } from './user.service';
     AuthGuard, 
     UserService, 
     FormsService, 
-    SettingsService
+    SettingsService, 
+    ErrorService
   ],
   bootstrap: [AppComponent]
 })

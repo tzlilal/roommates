@@ -6,13 +6,12 @@ import { Observable, ReplaySubject } from "rxjs";
 import { User } from "../user.model";
 import { UserDetail } from "../settings/user-detail/user-detail.model";
 import { RoommateDetail } from './../settings/roommate-detail/roommate-detail.model';
+import { ErrorService } from "../errors/error.service";
 
 @Injectable()
 export class AuthService {
-  private users: User[] = [];
-  // private currentUser: User;
 
-  constructor(private http: Http) {}
+  constructor(private http: Http, private errorService: ErrorService) {}
 
   signup(user: User) {
     const body = JSON.stringify(user);
@@ -20,7 +19,10 @@ export class AuthService {
     return this.http
       .post("http://localhost:3000/auth", body, { headers: headers })
       .map((response: Response) => response.json)
-      .catch((error: Response) => Observable.throw(error.json()));
+      .catch((error: Response) => {
+        this.errorService.handleError(error.json());
+        return Observable.throw(error.json());
+      });
   }
 
   signin(user: User) {
@@ -31,7 +33,10 @@ export class AuthService {
       .map((response: Response) => {
         return response.json();
       })
-      .catch((error: Response) => Observable.throw(error.json()));
+      .catch((error: Response) => {
+        this.errorService.handleError(error.json());
+        return Observable.throw(error.json());
+      });
   }
 
   logout() {

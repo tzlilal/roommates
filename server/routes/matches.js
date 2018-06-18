@@ -22,7 +22,7 @@ function pythonScript(id, resultArr, res) {
 
         User.find({
             '_id': { $in: result}
-        }).populate('userDetail').populate('roommateDetail').exec(function(err, result) {
+        }).exec((err, result) => {
             if(err) {
                 return res.status(500).json({
                   title: 'An error occured', 
