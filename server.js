@@ -6,7 +6,10 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 // Get our API routes
-const api = require('./server/routes/api');
+const user = require('./server/routes/user');
+const auth = require('./server/routes/auth');
+const settings = require('./server/routes/settings');
+const matches = require('./server/routes/matches');
 
 const app = express();
 // connect app to mongoose 
@@ -21,7 +24,10 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.use("/images", express.static(path.join("server/images")));
 
 // Set our api routes
-app.use('/api', api);
+app.use('/', user);
+app.use('/auth', auth);
+app.use('/settings', settings);
+app.use('/matches', matches);
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {

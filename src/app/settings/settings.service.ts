@@ -18,7 +18,7 @@ export class SettingsService {
     : "";
     // const headers = new Headers({ "Content-Type": "application/json" });
     return this.http
-      .post("http://localhost:3000/api/account" + token, postData)
+      .post("http://localhost:3000/settings/account" + token, postData)
       .map((response: Response) => console.log(response.json))
       .catch((error: Response) => Observable.throw(error.json()));
   }
@@ -30,7 +30,7 @@ export class SettingsService {
     : "";
     const headers = new Headers({ "Content-Type": "application/json" });
     return this.http
-      .post("http://localhost:3000/api/userDetail" + token, body, { headers: headers })
+      .post("http://localhost:3000/settings/userDetail" + token, body, { headers: headers })
       .map((response: Response) => console.log(response.json))
       .catch((error: Response) => Observable.throw(error.json()));
   }
@@ -42,7 +42,7 @@ export class SettingsService {
     : "";
     const headers = new Headers({ "Content-Type": "application/json" });
     return this.http
-      .post("http://localhost:3000/api/roommateDetail" + token, body, { headers: headers })
+      .post("http://localhost:3000/settings/roommateDetail" + token, body, { headers: headers })
       .map((response: Response) => console.log(response.json))
       .catch((error: Response) => Observable.throw(error.json()));
   }

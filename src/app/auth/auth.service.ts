@@ -17,7 +17,7 @@ export class AuthService {
     const body = JSON.stringify(user);
     const headers = new Headers({ "Content-Type": "application/json" });
     return this.http
-      .post("http://localhost:3000/api", body, { headers: headers })
+      .post("http://localhost:3000/auth", body, { headers: headers })
       .map((response: Response) => response.json)
       .catch((error: Response) => Observable.throw(error.json()));
   }
@@ -26,7 +26,7 @@ export class AuthService {
     const body = JSON.stringify(user);
     const headers = new Headers({ "Content-Type": "application/json" });
     return this.http
-      .post("http://localhost:3000/api/signin", body, { headers: headers })
+      .post("http://localhost:3000/auth/signin", body, { headers: headers })
       .map((response: Response) => {
         return response.json();
       })
@@ -61,7 +61,7 @@ export class AuthService {
       ? "?token=" + localStorage.getItem("token")
       : "";
     return this.http
-      .get("http://localhost:3000/api/profile" + token)
+      .get("http://localhost:3000/profile" + token)
       .map((response: Response) => {
         const result = response.json();
         // console.log(result); 
@@ -81,7 +81,7 @@ export class AuthService {
 
   getUsers() {
     return this.http
-      .get("http://localhost:3000/api/search")
+      .get("http://localhost:3000/search")
       .map((response: Response) => {
         const users = response.json().obj;
         let transformedUsers: User[] = [];
@@ -103,7 +103,7 @@ export class AuthService {
     : "";
     const headers = new Headers({ "Content-Type": "application/json" });
     return this.http
-      .post("http://localhost:3000/api/favorites" + token, body, { headers: headers })
+      .post("http://localhost:3000/favorites" + token, body, { headers: headers })
       .map((response: Response) => {
         return response.json();
       })
@@ -115,7 +115,7 @@ export class AuthService {
     ? "?token=" + localStorage.getItem("token")
     : "";
     return this.http
-      .get("http://localhost:3000/api/favorites" + token)
+      .get("http://localhost:3000/favorites" + token)
       .map((response: Response) => {
         const users = response.json().obj;
         let transformedUsers: User[] = [];
@@ -134,7 +134,7 @@ export class AuthService {
     ? "?token=" + localStorage.getItem("token")
     : "";
     return this.http
-      .get("http://localhost:3000/api/matches" + token)
+      .get("http://localhost:3000/matches" + token)
       .map((response: Response) => {
         const users = response.json().obj;
         let transformedUsers: User[] = [];
@@ -150,7 +150,7 @@ export class AuthService {
 
   getUserProfile(id) {
     return this.http
-    .get("http://localhost:3000/api/users/" + id)
+    .get("http://localhost:3000/users/" + id)
     .map((response: Response) => {
       const userResult = response.json().obj;
       const userDetail = userResult.userDetail; 
