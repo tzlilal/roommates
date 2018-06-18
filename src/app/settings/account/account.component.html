@@ -20,7 +20,7 @@
                         <input
                                 type="text"
                                 class="form-control"
-                                [value]="authService.user?.firstName"
+                                [value]="userService.user?.firstName"
                                 formControlName="firstName"
                                 (change)="change('firstName', $event)"
                         >
@@ -37,7 +37,7 @@
                         <input
                                 type="text"
                                 class="form-control"
-                                [value]="authService.user?.lastName"
+                                [value]="userService.user?.lastName"
                                 formControlName="lastName"
                                 (change)="change('lastName', $event)">
                   </div>
@@ -50,7 +50,7 @@
                             <input
                                     type="email"
                                     class="form-control"
-                                    [value]="authService.user?.email"
+                                    [value]="userService.user?.email"
                                     formControlName="email"
                                     (change)="change('email', $event)">
                       </div>
@@ -62,7 +62,7 @@
                                     type="number"
                                     id="phoneNumber"
                                     class="form-control"
-                                    [value]="authService.user?.phoneNumber"
+                                    [value]="userService.user?.phoneNumber"
                                     formControlName="phoneNumber"
                                     (change)="change('phoneNumber', $event)">
                       </div>

@@ -4,7 +4,7 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Router } from '@angular/router';
 
 import { AuthService } from './auth.service';
-import { User } from './user.model';
+import { User } from '../user.model';
 
 @Component({
     selector: 'app-signup',

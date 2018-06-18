@@ -25,7 +25,7 @@
             </a></li>
             <!-- <li *ngIf="isLoggedIn"><a href='#'>חיפוש</a></li> -->
             <li *ngIf="isLoggedIn" routerLinkActive="active"><a [routerLink]="['logout']">יציאה <i class="fas fa-sign-out-alt"></i></a></li>
-            <li *ngIf="isLoggedIn" routerLinkActive="active"><a [routerLink]="['settings']">{{ authService.userName }} <i class="fas fa-user"></i></a>
+            <li *ngIf="isLoggedIn" routerLinkActive="active"><a [routerLink]="['settings']">{{ userService.userName }} <i class="fas fa-user"></i></a>
             </li>
           </ul>
           <!-- <form *ngIf="isLoggedIn" class="navbar-form navbar-right">

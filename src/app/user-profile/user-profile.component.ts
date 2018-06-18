@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from '../auth/auth.service';
-import { User } from '../auth/user.model';
+
+import { User } from '../user.model';
+import { UserService } from '../user.service';
 
 
 @Component({
@@ -16,14 +17,14 @@ export class UserProfileComponent implements OnInit {
   isFemale = false; 
   isFavorite = false; 
 
-  constructor(private route: ActivatedRoute, public authService: AuthService) { }
+  constructor(private route: ActivatedRoute, public userService: UserService) { }
 
   ngOnInit() {
     // paramMap is the property that gives us all the parameters in this route 
     this.route.paramMap
     .subscribe(params => {
       this.id = params.get('id'); // the id after the /user/:id  
-      this.authService.getUserProfile(this.id)
+      this.userService.getUserProfile(this.id)
       .subscribe((user: User) => {
           this.user = user; 
       });
@@ -39,7 +40,7 @@ export class UserProfileComponent implements OnInit {
 
   starFavorite() {
     this.isFavorite = !this.isFavorite; 
-    this.authService.addToFavorites({_id: this.id})
+    this.userService.addToFavorites({_id: this.id})
     .subscribe(); 
   }
 

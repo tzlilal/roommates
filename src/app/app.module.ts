@@ -28,6 +28,7 @@ import { FormsService } from './settings/forms.service';
 import { SettingsService } from './settings/settings.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FavoriteComponent } from './favorite/favorite.component';
+import { UserService } from './user.service';
  
 
 @NgModule({
@@ -59,7 +60,13 @@ import { FavoriteComponent } from './favorite/favorite.component';
     FormsModule,
     ImageUploadModule.forRoot()
   ],
-  providers: [AuthService, AuthGuard, FormsService, SettingsService],
+  providers: [
+    AuthService, 
+    AuthGuard, 
+    UserService, 
+    FormsService, 
+    SettingsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

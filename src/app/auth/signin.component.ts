@@ -4,7 +4,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 import { AuthService } from './auth.service';
-import { User } from './user.model';
+import { User } from '../user.model';
+import { UserService } from '../user.service';
 
 @Component({
     selector: 'app-signin',
@@ -14,7 +15,11 @@ import { User } from './user.model';
 export class SigninComponent implements OnInit{
     signinForm: FormGroup;
 
-    constructor(private authService: AuthService, private router: Router) {}
+    constructor(
+        private router: Router, 
+        private authService: AuthService, 
+        private userService: UserService, 
+    ) {}
 
     onSubmit(){
         const user = new User(this.signinForm.value.email, this.signinForm.value.password);
@@ -25,7 +30,7 @@ export class SigninComponent implements OnInit{
 
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('userId', data.userId);
-                    this.authService.getProfile().subscribe(u => {}); 
+                    this.userService.getProfile().subscribe(u => {}); 
                     this.router.navigateByUrl('/settings'); // was only '/'
                 },
                 error => console.error(error)

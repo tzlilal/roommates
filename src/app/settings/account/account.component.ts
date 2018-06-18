@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { User } from '../../auth/user.model';
-import { AuthService } from '../../auth/auth.service';
+import { User } from '../../user.model';
+import { UserService } from '../../user.service';
 import { SettingsService } from './../settings.service';
-import { mimeType } from './mime-type.validator'
+import { mimeType } from './mime-type.validator';
 
 @Component({
   selector: 'app-account',
@@ -17,7 +17,10 @@ export class AccountComponent implements OnInit {
   tempUser = {}; 
   imagePreview: string; 
 
-  constructor(public authService: AuthService, private settingsService: SettingsService) { }
+  constructor(
+    public userService: UserService, 
+    private settingsService: SettingsService
+  ) { }
 
   ngOnInit() { 
     this.accountForm = new FormGroup({

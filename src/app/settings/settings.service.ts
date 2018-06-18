@@ -1,7 +1,8 @@
-import { User } from './../auth/user.model';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable, ReplaySubject } from "rxjs";
 import { Injectable } from '@angular/core';
+
+import { User } from '../user.model';
 
 @Injectable()
 export class SettingsService {

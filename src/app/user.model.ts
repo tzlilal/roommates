@@ -1,5 +1,6 @@
-import { RoommateDetail } from './../settings/roommate-detail/roommate-detail.model';
-import { UserDetail } from './../settings/user-detail/user-detail.model';
+import { RoommateDetail } from './settings/roommate-detail/roommate-detail.model';
+import { UserDetail } from './settings/user-detail/user-detail.model';
+
 export class User {
     constructor(
                 public email: string,

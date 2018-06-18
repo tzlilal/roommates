@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AuthService } from '../auth/auth.service';
-import { User } from '../auth/user.model';
+import { User } from '../user.model';
+import { UserService } from '../user.service';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { User } from '../auth/user.model';
 export class SearchComponent implements OnInit {
   users: User[];
 
-  constructor(private authService: AuthService) { 
+  constructor(private userService: UserService) { 
   }
 
   ngOnInit() {
@@ -23,7 +23,7 @@ export class SearchComponent implements OnInit {
     // );
   
     
-    this.authService.getMatches().subscribe(
+    this.userService.getMatches().subscribe(
       (users: User[]) => {
         this.users = users; 
       }); 
