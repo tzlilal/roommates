@@ -18,7 +18,7 @@ import { ErrorService } from './error.service';
 })
 export class ErrorComponent implements OnInit {
   error: Error;
-  display = 'none';
+  display = 'none'; // initially is not displayed 
 
   constructor(private errorService: ErrorService) { }
 
@@ -31,7 +31,7 @@ export class ErrorComponent implements OnInit {
           .subscribe(
               (error: Error) => {
                   this.error = error;
-                  this.display = 'block';
+                  this.display = 'block'; // will display the backdrop(gives a gray backgound)
               }
           );
     }

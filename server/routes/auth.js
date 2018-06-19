@@ -10,7 +10,8 @@ router.post('/', (req, res, next) => {
     let user = new User({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      password: bcrypt.hashSync(req.body.password, 10), // returning hashed password
+    //   SUBMIT THE PASSWORD VIA SSL (using ssl to encrypt the data with a real server)
+      password: bcrypt.hashSync(req.body.password, 10), // returning hashed password, seconed arument is the number of salting rounds
       email: req.body.email, 
       registryDate: new Date(), 
       isActive: true
@@ -18,7 +19,6 @@ router.post('/', (req, res, next) => {
     user.save((err, result) => {
       if(err){ 
         if (err.errors.email.kind === 'unique') {
-            console.log("sdfsdfsf"); 
             return res.status(500).json({
                 title: 'ההרשמה נכשלה', 
                 error: {message: 'קיים משתמש במערכת עם האימייל שהוזן'}

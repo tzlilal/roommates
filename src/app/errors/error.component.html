@@ -3,6 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
+                <!-- X close button, when clicking the css will be removed -->
                 <button type="button" class="close" aria-label="Close" (click)="onErrorHandled()"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">{{ error?.title }}</h4>
             </div>
@@ -10,7 +11,7 @@
                 <p>{{ error?.message }}</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" (click)="onErrorHandled()">סגור</button>
+                <button type="button" class="btn btn-default pull-left" (click)="onErrorHandled()">סגור</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

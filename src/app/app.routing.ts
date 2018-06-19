@@ -21,9 +21,9 @@ const APP_ROUTES: Routes = [
     { path: 'home', component: HomeComponent }, 
     { path: 'signup', component: SignupComponent }, 
     { path: 'signin', component: SigninComponent },
-    { path: 'favorites', component: FavoriteComponent },
+    { path: 'favorites', canActivate: [AuthGuard], component: FavoriteComponent },
     { path: 'logout', component: LogoutComponent }, 
-    { path: 'users/:id', component: UserProfileComponent },
+    { path: 'users/:id', canActivate: [AuthGuard], component: UserProfileComponent },
     { path: 'users', canActivate: [AuthGuard], component: SearchComponent },
     // { path: 'search', canActivate: [AuthGuard], component: SearchComponent }, 
     { path: 'settings', canActivate: [AuthGuard], component: SettingsComponent, children: [
@@ -35,7 +35,7 @@ const APP_ROUTES: Routes = [
         { path: 'apartment', component: ApartmentComponent}
     ]},
     // redirect to home if the page doesnt exist
-    // { path: '**', component: HomeComponent }  
+    { path: '**', component: HomeComponent }  
 ];
 
 export const routing = RouterModule.forRoot(APP_ROUTES);

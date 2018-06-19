@@ -1,11 +1,9 @@
 import { Http, Headers, Response } from "@angular/http";
 import { Injectable } from "@angular/core";
 import "rxjs/Rx";
-import { Observable, ReplaySubject } from "rxjs";
+import { Observable } from "rxjs";
 
 import { User } from "../user.model";
-import { UserDetail } from "../settings/user-detail/user-detail.model";
-import { RoommateDetail } from './../settings/roommate-detail/roommate-detail.model';
 import { ErrorService } from "../errors/error.service";
 
 @Injectable()
