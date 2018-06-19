@@ -16,11 +16,20 @@ router.post('/', (req, res, next) => {
       isActive: true
     });
     user.save((err, result) => {
-      if(err){
-        return res.status(500).json({
-          title: 'An error occured', 
-          error: err
-        });
+      if(err){ 
+        if (err.errors.email.kind === 'unique') {
+            console.log("sdfsdfsf"); 
+            return res.status(500).json({
+                title: 'ההרשמה נכשלה', 
+                error: {message: 'קיים משתמש במערכת עם האימייל שהוזן'}
+              }); 
+        }
+        else { 
+            return res.status(500).json({
+                title: 'ההרשמה נכשלה', 
+                error: err
+              });
+        }
       }
       res.status(201).json({
         message: 'User created',
@@ -41,15 +50,15 @@ router.post('/signin', (req, res, next) => {
         }
         if(!user) {
             return res.status(401).json({
-                title: 'Login failed',
-                error: {message: 'Invalid login credentials'}
+                title: 'ההתחברות נכשלה',
+                error: {message: 'לא קיים משתמש במערכת עם הפרטים שהוזנו'}
             });
         }
         // if the password from the request and the password in the db doesnt match
         if(!bcrypt.compareSync(req.body.password, user.password)) { 
             return res.status(401).json({
-                title: 'Login failed',
-                error: {message: 'Invalid login credentials'}
+                title: 'ההתחברות נכשלה',
+                error: {message: 'האימייל או הסיסמה שהוזנו לא נכונים'}
             });
         }
         // creates a new token and signs it
