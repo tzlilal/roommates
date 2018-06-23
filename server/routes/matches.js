@@ -60,12 +60,15 @@ router.get('/', (req, res) => {
             onlyMaleOrFemale = false; 
         const regions = result.userDetail.regions; 
         if (onlyMaleOrFemale) {
+            // finds all the user with age between minAge-maxAge with the same regions of the current user and the relevent gender
             UserDetail.find(
                 {age: { $gt: minAge, $lt: maxAge}, 
                 regions: { $in: regions }, 
                 sex: gender}
+            // joins to the table 'roommateDetailEncoded' to get encoded detail
             ).populate('roommateDetailEncoded')
             .exec((err, result) => {
+                // the result from the db is a user containg a key called "roommateDetailEncoded" which holds all the info we need
                 // console.log(JSON.stringify(result, undefined, 2));
                 let userEncodedArr = []; 
                 result.forEach((val) => {

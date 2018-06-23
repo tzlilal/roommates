@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../../models/user');
 
 // signup route
-router.post('/', (req, res, next) => {
+router.post('/', (req, res, next) => { 
     let user = new User({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -14,7 +14,13 @@ router.post('/', (req, res, next) => {
       password: bcrypt.hashSync(req.body.password, 10), // returning hashed password, seconed arument is the number of salting rounds
       email: req.body.email, 
       registryDate: new Date(), 
-      isActive: true
+      isActive: true,
+      phoneNumber: '', 
+      userDetail: null, 
+      roommateDetail: null, 
+      roommateDetailEncoded: null, 
+      users: [], 
+      imagePath: req.protocol + '://' + req.get("host") + "/images/user.png"
     });
     user.save((err, result) => {
       if(err){ 

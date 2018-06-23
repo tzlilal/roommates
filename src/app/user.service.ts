@@ -35,14 +35,20 @@ export class UserService {
     return this.http
       .get("http://localhost:3000/profile" + token)
       .map((response: Response) => {
-        const result = response.json();
-        // console.log(result); 
+        const result = response.json().result;
         let user = new User(
-          result.result.email,
-          result.result.password,
-          result.result.firstName,
-          result.result.lastName,
-          result.result._id
+          result.email,
+          result.password,
+          result.firstName,
+          result.lastName,
+          result._id,
+          result.registryDate,
+          result.isActive,
+          result.phoneNumber,
+          result.userDetail,
+          result.roommateDetail,
+          result.users,
+          result.imagePath
         );
         this.currentUser = user;
         // debugger
@@ -62,7 +68,10 @@ export class UserService {
         let transformedUsers: User[] = [];
         for (let user of users) {
           transformedUsers.push(
-            new User(user.email, user.password, user.firstName, user.lastName, user._id)
+            new User(
+              user.email, user.password, user.firstName, user.lastName, user._id, 
+              null, null, null, null, null, null, user.imagePath
+            )
           );
         }
         return transformedUsers; 
@@ -112,7 +121,10 @@ export class UserService {
         let transformedUsers: User[] = [];
         for (let user of users) {
           transformedUsers.push(
-            new User(user.email, user.password, user.firstName, user.lastName, user._id)
+            new User(
+              user.email, user.password, user.firstName, user.lastName, user._id, 
+              null, null, null, null, null, null, user.imagePath
+            )
           );
         }
         return transformedUsers; 
@@ -125,6 +137,7 @@ export class UserService {
     .get("http://localhost:3000/users/" + id)
     .map((response: Response) => {
       const userResult = response.json().obj;
+      console.log(userResult); 
       const userDetail = userResult.userDetail; 
       const transformedUserDetail = new UserDetail(
         userDetail.sex,

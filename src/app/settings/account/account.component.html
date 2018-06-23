@@ -4,9 +4,13 @@
         <div class="col-md-4">
           <div class="card">
               <button (click)="filePicker.click()">בחר תמונה</button>
+              <!-- hidden button -->
               <input type="file" #filePicker (change)="onImagePicked($event)">
-              <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && accountForm.get('image').valid">
-                  <img [src]="imagePreview">
+              <div class="image-preview">
+                  <span *ngIf="imageUploaded && imagePreview !== '' && imagePreview && accountForm.get('image').valid">
+                    <img [src]="imagePreview">
+                  </span>
+                  <span *ngIf="!imageUploaded"><img [src]="userService.user?.imagePath"></span>
               </div>
           </div>
         </div>
@@ -25,7 +29,7 @@
                                 (change)="change('firstName', $event)"
                         >
                                 <!-- send name of value and value  -->
-                                <div *ngIf="firstName.touched && firstName.invalid " class="alert alert-danger">
+                                <div *ngIf="firstName.invalid" class="alert alert-danger">
                                   <div *ngIf="firstName.errors.required">חובה למלא שם פרטי</div>
                                   <div *ngIf="firstName.errors.minlength">השם צריך להכיל לפחות שני תווים</div>
                                 </div>
@@ -40,6 +44,10 @@
                                 [value]="userService.user?.lastName"
                                 formControlName="lastName"
                                 (change)="change('lastName', $event)">
+                                <div *ngIf="lastName.invalid" class="alert alert-danger">
+                                    <div *ngIf="lastName.errors.required">חובה למלא שם משפחה</div>
+                                    <div *ngIf="lastName.errors.minlength">שם המשפחה צריך להכיל לפחות שני תווים</div>
+                                </div>  
                   </div>
                 </div>
               </div>
@@ -53,6 +61,10 @@
                                     [value]="userService.user?.email"
                                     formControlName="email"
                                     (change)="change('email', $event)">
+                                    <div *ngIf="email.invalid" class="alert alert-danger">
+                                        <div *ngIf="email.errors.required">חובה למלא אימייל</div>
+                                        <div *ngIf="email.errors.pattern">האימייל חייב להיות בתבנית user@example.com</div>
+                                    </div>   
                       </div>
                     </div>
                     <div class="col-md-6 pull-right">
@@ -93,16 +105,17 @@
 
             </div>
           </div>
-      <button class="btn btn-primary" type="submit">שמור</button>
+          <div class="col-md-8 col-md-offset-1">
+            <button class="btn btn-primary" type="submit">שמור</button>
+          </div>
     </div>
   </div>
 </form>
 
 
-<div class="col-md-8 col-md-offset-2">
+<!-- <div class="col-md-8 col-md-offset-2">
     <button class="btn btn-danger" (click)="onDeactivate()">בטל פעילות חשבון</button>
   </div>
 <div class="col-md-8 col-md-offset-2">
   <button class="btn btn-danger" (click)="onDeleteAccount()">מחק חשבון</button>
-</div>
-
+</div> -->

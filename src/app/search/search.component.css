@@ -12,7 +12,8 @@
   .thumb-img {
     border-radius: 2px;
     overflow: hidden;
-    width: 100%;
+    display: block; 
+    margin: 0 auto; 
   }
   .gal-detail h4 {
     margin: 16px auto 10px auto;

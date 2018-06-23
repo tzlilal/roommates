@@ -7,6 +7,10 @@
                     id="firstName"
                     class="form-control"
                     formControlName="firstName">
+                    <div *ngIf="firstName.invalid && firstName.touched" class="alert alert-danger">
+                        <div *ngIf="firstName.errors.required">חובה למלא שם פרטי</div>
+                        <div *ngIf="firstName.errors.minlength">השם צריך להכיל לפחות שני תווים</div>
+                    </div>
         </div>
         <div class="form-group">
             <label for="lastName">שם משפחה</label>
@@ -15,6 +19,10 @@
                     id="lastName"
                     class="form-control"
                     formControlName="lastName">
+                    <div *ngIf="lastName.invalid && lastName.touched" class="alert alert-danger">
+                        <div *ngIf="lastName.errors.required">חובה למלא שם משפחה</div>
+                        <div *ngIf="lastName.errors.minlength">שם המשפחה צריך להכיל לפחות שני תווים</div>
+                    </div>        
         </div>
         <div class="form-group">
             <label for="email">אימייל</label>
@@ -23,6 +31,10 @@
                     id="email"
                     class="form-control"
                     formControlName="email">
+                    <div *ngIf="email.invalid && email.touched" class="alert alert-danger">
+                        <div *ngIf="email.errors.required">חובה למלא אימייל</div>
+                        <div *ngIf="email.errors.pattern">האימייל חייב להיות בתבנית user@example.com</div>
+                    </div>    
         </div>
         <div class="form-group">
             <label for="password">סיסמה</label>
@@ -31,6 +43,9 @@
                     id="password"
                     class="form-control"
                     formControlName="password">
+                    <div *ngIf="password.invalid && password.touched" class="alert alert-danger">
+                        <div *ngIf="password.errors.required">חובה למלא סיסמה</div>
+                    </div>  
         </div>
         <button
                 class="btn btn-primary"

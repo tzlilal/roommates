@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const http = require('http');
 const multer = require('multer'); // for extracting files 
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const User = require('../../models/user');
 const UserDetail = require('../../models/user-detail'); 
@@ -54,7 +57,8 @@ router.post('/account', multer({ storage: storage }).single("image"), (req, res,
         if (req.file) {
             if ('filename' in req.file) {
                 const url = req.protocol + '://' + req.get("host"); 
-                user.imagePath = url + "/images" + req.file.filename; 
+                user.imagePath = url + "/images/" + req.file.filename; 
+                console.log(user.imagePath); 
             }
         }
         user.save((err, result) => {
@@ -156,7 +160,7 @@ router.post('/roommateDetail', (req, res, next) => {
             cleaning: encodedResult['cleaning'],
             user: user._id
         });
-        roommateDetailEncoded.save(); 
+        roommateDetailEncoded.save();
         user.userDetail.roommateDetailEncoded = roommateDetailEncoded._id; 
         user.roommateDetailEncoded = roommateDetailEncoded._id; 
         user.userDetail.save();

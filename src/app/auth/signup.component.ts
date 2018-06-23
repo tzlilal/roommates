@@ -35,13 +35,29 @@ export class SignupComponent implements OnInit {
 
     ngOnInit(){
         this.signupForm = new FormGroup({
-            firstName: new FormControl(null, Validators.required), 
-            lastName: new FormControl(null, Validators.required), 
-            email: new FormControl(null, [
+            firstName: new FormControl('', [Validators.required, Validators.minLength(2)]), 
+            lastName: new FormControl('', [Validators.required, Validators.minLength(2)]), 
+            email: new FormControl('', [
                 Validators.required,
                 Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
             ]),
-            password: new FormControl(null, Validators.required)
+            password: new FormControl('', Validators.required)
         });
+    }
+
+    get firstName() {
+        return this.signupForm.get("firstName"); 
+    }
+
+    get lastName() {
+        return this.signupForm.get("lastName"); 
+    }
+
+    get email() {
+        return this.signupForm.get("email"); 
+    }
+
+    get password() {
+        return this.signupForm.get("password"); 
     }
 }
